@@ -6,42 +6,56 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Unit extends Actor
+abstract public class Unit extends Actor
 {
-    private int force = 10;
-    private int speed = 5;
-    private int jumpHight = 15;
-    
-    /**
-     * Act - do whatever the Unit wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        gravity();
-        userinput();
-    }    
-    
-    private void gravity(){
-        if(getOneIntersectingObject(Ground.class) == null){
-            this.setLocation(this.getX(), this.getY() + force);
+    public int force = 10;
+    public int speed = 0;
+    public String direction = "";
+    public int hp = 1;
+
+    public void gravity(){
+        this.setLocation(this.getX(), this.getY() + force);
+        Greenfoot.delay(1);
+    }
+
+    public void moveLeft(){
+        loc(this.getX() - getSpeed(), this.getY());
+    }
+
+    public void moveRight(){
+        loc(this.getX() + getSpeed(), this.getY());
+    }
+
+    public boolean grounded(){
+        if(this.getOneIntersectingObject(Ground.class) != null){
+            return true;
         }
+        return false;
+    }
+
+    public void loc(int x, int y){this.setLocation(x,y);}
+    
+    public void setSpeed(int speed){
+        this.speed = speed;
     }
     
-    private void userinput(){
-        if(Greenfoot.isKeyDown("Left")){
-            loc(this.getX() - speed, this.getY());
-        }
-        if(Greenfoot.isKeyDown("Right")){loc(
-            this.getX() + speed, this.getY());
-        }
-        if(Greenfoot.isKeyDown("Up")){
-            jump();
-        }
+    public int getSpeed(){
+        return this.speed;
     }
     
-    private void jump(){
-        loc(this.getX(), this.getY() - jumpHight);
+    public void setDirection(String direction){
+        this.direction = direction;
     }
-    private void loc(int x, int y){this.setLocation(x,y);}
+    
+    public String getDirection(){
+        return this.direction;
+    }
+    
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+    
+    public int getHp(){
+        return this.hp;
+    }
 }
