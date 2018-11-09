@@ -38,7 +38,7 @@ public class desert extends World
         addObject(new Ground(), 500, 585);
         addObject(new Ground(), 2, 400);
         addObject(new Player(this), 500, 300);
-        addObject(new Mexican("right"), 900, 300);
+        addObject(new Mexican("right"), 500, 300);
         addObject(new Chinese("left"), 900, 300);
         addObject(new Arab("left"), 900, 300);
         act_Mexicans= act_Mexicans+1;
@@ -63,6 +63,16 @@ public class desert extends World
          long number=Greenfoot.getRandomNumber((int)(end-start));
         return number+start;
     }
+    public String randomdirection(){
+        int number=Greenfoot.getRandomNumber(100);
+        if(number%2==0){
+            return "right";
+        }
+        else{
+            return "left";
+        }
+    }
+            
     public void addEnemys(){
         addRandommexicans();
         addRandomChinese();
@@ -70,21 +80,21 @@ public class desert extends World
     }
     public void addRandommexicans (){
         if(act_Mexicans < max_Mexicans && (timer.millisElapsed() > getRandomTime(255, 2550))){   
-            addObject(new Mexican ("left"), getRandomNumber(0, 1000),getRandomNumber(0, 500));
+            addObject(new Mexican (randomdirection()), getRandomNumber(0, 1000),getRandomNumber(0, 500));
             act_Mexicans= act_Mexicans+1;
             timer.mark();
         } 
     }
      public void addRandomChinese (){
         if(act_Chinese < max_Chinese && (timer.millisElapsed() > getRandomTime(255, 2550))){   
-            addObject(new Chinese ("left"), getRandomNumber(0, 1000),getRandomNumber(0, 500));
+            addObject(new Chinese (randomdirection()), getRandomNumber(0, 1000),getRandomNumber(0, 500));
             act_Chinese= act_Chinese+1;
             timer.mark();
         } 
     }
      public void addRandomArabs(){
         if(act_Arabs < max_Arabs && (timer.millisElapsed() > getRandomTime(255, 2550))){   
-            addObject(new Arab ("left"), getRandomNumber(0, 1000),getRandomNumber(0, 500));
+            addObject(new Arab (randomdirection()), getRandomNumber(0, 1000),getRandomNumber(0, 500));
             act_Arabs= act_Arabs+1;
             timer.mark();
         } 

@@ -27,5 +27,6 @@ public class Chinese extends Enemy
             run(getDirection());
         }
         //ab hier alle Aktionen!
+        direction();
     }    
 }

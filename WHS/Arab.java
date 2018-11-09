@@ -28,5 +28,6 @@ public class Arab extends Enemy
             run(getDirection());
         }
         //ab hier alle Aktionen!
+        direction();
     }    
 }

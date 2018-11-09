@@ -25,6 +25,7 @@ public class Mexican extends Enemy
         if(grounded()){
             run(getDirection());
         }
+        direction();
         //ab hier alle Aktionen!
     }    
     private void kill(){

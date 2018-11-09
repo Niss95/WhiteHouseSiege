@@ -8,6 +8,7 @@ import greenfoot.*;
  */
 abstract public class Enemy extends Unit
 {
+   
     /**
      * Act - do whatever the Enemy wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -23,7 +24,9 @@ abstract public class Enemy extends Unit
         }
         //ab hier alle Aktionen!
         */
+       direction();
     }
+    
 
     public void run(String direction){
         if(direction.equals("right")){
@@ -33,4 +36,14 @@ abstract public class Enemy extends Unit
             moveLeft();
         }
     }
+    public void direction(){
+        if( this.isAtEdge()&& getDirection()=="right"){
+            //turn(90);
+            setDirection("left");
+        }
+        else if(this.isAtEdge()&& getDirection()=="left"){
+            //turn(90);
+            setDirection("right");
+    }
+}
 }
