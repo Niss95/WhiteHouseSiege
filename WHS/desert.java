@@ -36,7 +36,7 @@ public class desert extends World
     {
         //this.setBackground(new GreenfootImage(""));
         addObject(new Ground(), 500, 585);
-        addObject(new Ground(), 0.2, 400);
+        addObject(new Ground(), 2, 400);
         addObject(new Player(this), 500, 300);
         addObject(new Mexican("right"), 900, 300);
         addObject(new Chinese("left"), 900, 300);
