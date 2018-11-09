@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ mark()
+comment0.text=\n\ Marks\ the\ current\ time.\ \ You\ can\ then\ in\ future\ call\n\ millisElapsed()\ to\ find\ out\ the\ elapsed\ milliseconds\n\ since\ this\ mark()\ call\ was\ made.\n\ \n\ A\ second\ mark()\ call\ will\ reset\ the\ mark,\ and\ millisElapsed()\n\ will\ start\ increasing\ from\ zero\ again.\n
+comment1.params=
+comment1.target=int\ millisElapsed()
+comment1.text=\n\ Returns\ the\ amount\ of\ milliseconds\ that\ have\ elapsed\ since\ mark()\n\ was\ last\ called.\ \ This\ timer\ runs\ irrespective\ of\ Greenfoot's\n\ act()\ cycle,\ so\ if\ you\ call\ it\ many\ times\ during\ the\ same\ Greenfoot\ frame,\n\ you\ may\ well\ get\ different\ answers.\n
+numComments=2

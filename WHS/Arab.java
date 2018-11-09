@@ -12,6 +12,7 @@ public class Arab extends Enemy
         setSpeed(2);
         setHp(100);
         setDirection(direction);
+        int leben=2;
     }
     
     /**

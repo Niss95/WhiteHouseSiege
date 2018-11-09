@@ -1,11 +1,15 @@
 #BlueJ class context
-comment0.params=
-comment0.target=Player()
+comment0.params=desert
+comment0.target=Player(desert)
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\n\ jump()\ und\ gravity()\ m\u00FCssen\ bei\ jedem\ durchlauf\ gecheckt\ werden\!\n\ \n
 comment2.params=
-comment2.target=void\ userinput()
+comment2.target=void\ ShowScore()
 comment3.params=
-comment3.target=void\ jump()
-numComments=4
+comment3.target=void\ userinput()
+comment4.params=
+comment4.target=void\ jump()
+comment5.params=
+comment5.target=void\ kill()
+numComments=6

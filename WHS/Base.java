@@ -29,7 +29,7 @@ public class Base extends World
     {
         this.setBackground(new GreenfootImage("background.png"));
         addObject(new Ground(), 500, 585);
-        addObject(new Player(), 500, 300);
+        //addObject(new Player(), 500, 300);
         addObject(new Mexican("right"), 900, 300);
         addObject(new Chinese("left"), 900, 300);
         addObject(new Arab("left"), 900, 300);

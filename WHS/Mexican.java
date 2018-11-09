@@ -27,4 +27,10 @@ public class Mexican extends Enemy
         }
         //ab hier alle Aktionen!
     }    
-}
+    private void kill(){
+                if(isTouching(Player.class)){
+                    removeTouching(Mexican.class);
+                }
+            }
+        }
+
