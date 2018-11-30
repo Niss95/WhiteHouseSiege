@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment1.params=
+comment1.target=void\ checkEdge()
+comment2.params=
+comment2.target=void\ move()
+comment3.params=
+comment3.target=boolean\ checkRightWalls()
+comment4.params=rightWall
+comment4.target=void\ stopByRightWall(greenfoot.Actor)
+comment5.params=
+comment5.target=boolean\ checkLeftWalls()
+comment6.params=leftWall
+comment6.target=void\ stopByLeftWall(greenfoot.Actor)
+comment7.params=
+comment7.target=void\ tryToHoldPlayer()
+comment8.params=clss
+comment8.target=boolean\ canSee(java.lang.Class)
+numComments=9

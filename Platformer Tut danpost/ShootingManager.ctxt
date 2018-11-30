@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment1.params=
+comment1.target=void\ remove()
+comment2.params=clss
+comment2.target=boolean\ amIshot(java.lang.Class)
+comment3.params=clss
+comment3.target=void\ kill(java.lang.Class)
+comment4.params=
+comment4.target=void\ killBadGuys()
+comment5.params=
+comment5.target=int\ getScore()
+comment5.text=\n\ Holds\ the\ score\ variable\ to\ be\ called\ by\ the\ Scores\ class\ for\ display.\n
+numComments=6
