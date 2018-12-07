@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.params=world
+comment0.target=Spawner(greenfoot.World)
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ spawner\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=
+comment2.target=void\ loadBuildings()
+comment3.params=anzahl\ Typ
+comment3.target=void\ spawnEnemys(int,\ char)
+comment3.text=\n\ Anzahl\ \=\=\ Wie\ viele\ Gegner\ sollen\ insgesammt\ gespawnt\ werden?\n\ \n\ Typ\:\ \n\ \ \ \ \ \ a\ \=\=\ Araber\n\ \ \ \ \ \ m\ \=\=\ Mexicaner\n\ \ \ \ \ \ c\ \=\=\ Chinese\n
+comment4.params=anzahl
+comment4.target=void\ spawnMexican(int)
+comment5.params=anzahl
+comment5.target=void\ spawnChinese(int)
+comment6.params=anzahl
+comment6.target=void\ spawnArab(int)
+numComments=7

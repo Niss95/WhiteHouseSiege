@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment0.text=\n\ Act\ -\ do\ whatever\ the\ Tower\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment1.params=
+comment1.target=void\ checkDeath()
+comment2.params=enemys
+comment2.target=void\ shoot(java.util.ArrayList)
+comment3.params=
+comment3.target=java.util.ArrayList\ getEnemys()
+comment4.params=
+comment4.target=int\ getRange()
+comment5.params=r
+comment5.target=void\ setRange(int)
+numComments=6
