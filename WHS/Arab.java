@@ -8,11 +8,11 @@ import greenfoot.*;
  */
 public class Arab extends Enemy
 {
+    int leben=2;
     public Arab(String direction){
         setSpeed(2);
         setHp(100);
         setDirection(direction);
-        int leben=2;
     }
     
     /**
@@ -25,9 +25,22 @@ public class Arab extends Enemy
             gravity();
         }
         if(grounded()){
-            run(getDirection());
+            run(getDirection(), "arab1.png", "arab1links.png"); //////hier!
         }
+        
         //ab hier alle Aktionen!
         direction();
-    }    
+        beam();
+    }  
+    public void beam(){
+        if(isTouching(Door.class)){
+            setLocation(75,176);
+        }
+    }
+    public void setLeben(int leben) {
+        this.leben=leben;
+    }
+    public int getLeben() {
+        return this.leben;
+    }
 }
