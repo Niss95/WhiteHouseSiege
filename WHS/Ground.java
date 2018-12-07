@@ -6,8 +6,12 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ground extends Actor
+public class Ground extends Grounds
 {
+    public Ground () {
+        getImage().scale(getImage().getWidth()*43, getImage().getHeight());
+        
+    }
     /**
      * Act - do whatever the Ground wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

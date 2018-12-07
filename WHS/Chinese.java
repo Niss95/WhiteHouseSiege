@@ -24,9 +24,15 @@ public class Chinese extends Enemy
             gravity();
         }
         if(grounded()){
-            run(getDirection());
+            run(getDirection(),"asianRight.png", "asianLeft.png");
         }
         //ab hier alle Aktionen!
         direction();
+        beam();
     }    
+    public void beam(){
+        if(isTouching(Door.class)){
+            setLocation(535,182);
+        }
+    }
 }

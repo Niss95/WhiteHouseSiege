@@ -6,8 +6,11 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class brick extends Ground
+public class brick extends Grounds
 {
+    public brick(){
+        getImage().scale(getImage().getWidth()*2, getImage().getHeight());
+    }
     /**
      * Act - do whatever the brick wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

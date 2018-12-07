@@ -25,24 +25,27 @@ abstract public class Enemy extends Unit
         //ab hier alle Aktionen!
         */
        direction();
+       if(isTouching(Objects.class)){
+           turn(90);
+        }
+
     }
     
-
-    public void run(String direction){
+    public void run(String direction, String imageRight, String imageLeft){
         if(direction.equals("right")){
             moveRight(); 
+            this.setImage(imageRight);
         }
         else if(direction.equals("left")){
             moveLeft();
+            this.setImage(imageLeft);
         }
     }
     public void direction(){
-        if( this.isAtEdge()&& getDirection()=="right"){
-            //turn(90);
+        if( this.isAtEdge() && getDirection()=="right"){
             setDirection("left");
         }
-        else if(this.isAtEdge()&& getDirection()=="left"){
-            //turn(90);
+        else if(this.isAtEdge() && getDirection()=="left"){
             setDirection("right");
     }
 }

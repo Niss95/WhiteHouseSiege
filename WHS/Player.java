@@ -9,8 +9,8 @@ import greenfoot.*;
 public class Player extends Unit
 {
     // änderbar
-    private int jumpHight = 250;    //Wie hoch er in pixeln springen soll
-    private int jumpSpeed = getForce();  // Wie schnell er springen soll (aktuell gleichgesetzt mit der Gravitation
+    private int jumpHight = 150;    //Wie hoch er in pixeln springen soll
+    private int jumpSpeed = getForce();  // Wie schnell er springen soll (aktuell gleichgesetzt mit der Gravitation)
     private desert desert;
     
     //Tastenbelegung:
@@ -21,7 +21,13 @@ public class Player extends Unit
     //Nicht ändern!!!
     private int currentJump = 0;    
     private boolean jumping = false;
-    private double score;
+    private boolean spacedown = false;
+    private int coins=0;
+    private int barrel=0;
+    private int steel=0;
+    private SimpleTimer timer=new SimpleTimer();
+    private String direction="right";
+    private boolean shooot=false;
      
     
     // standard Konstruktor
@@ -29,6 +35,8 @@ public class Player extends Unit
         this.desert = desert;
         setHp(100);
         setSpeed(10);
+
+    
     }
 
     /**
@@ -49,14 +57,43 @@ public class Player extends Unit
         //ab hier alle Aktionen!
     }   
     private void ShowScore(){
-        getWorld().showText("Score:$ "+ score, 920, 20);
+        if(isTouching(Barrel.class)){
+            barrel++;
+            removeTouching(Barrel.class);
+        }
+        if(isTouching(Coin.class)){
+            coins++;
+            removeTouching(Coin.class);
+        }
+        if(isTouching(Steel.class)){
+            steel++;
+            removeTouching(Steel.class);
+        }
+        getWorld().showText(coins + "   " + barrel + "    " + steel, 1240, 20);
     }
     private void userinput(){
+        boolean rightb=false;
         if(Greenfoot.isKeyDown(left)){
+            this.setImage("TrumpGGl.png");
             moveLeft();
+            direction="left";
         }
         if(Greenfoot.isKeyDown(right)){
-            moveRight();    
+            this.setImage("TrumpGGr.png");
+            moveRight();   
+            direction="right";
+        }
+        if(!spacedown && "space".equals(Greenfoot.getKey()) && timer.millisElapsed() >= 900){
+            if(!shooot){
+            this.setImage("TrumpGGr.png");
+            shooot=true;
+        
+        }
+            spacedown=true;
+            shoot(direction);
+        }
+        if(spacedown && !"space".equals(Greenfoot.getKey())){
+            spacedown=false;
         }
         if(Greenfoot.isKeyDown(up)){
             if(grounded() && jumping == false){
@@ -64,6 +101,18 @@ public class Player extends Unit
             }
         }
     }
+    private void shoot(String directione){
+         Bullet bullet = new Bullet(directione);
+         if (directione.equals("right")){    
+             getWorld().addObject(bullet, getX()+48, getY()-2);
+            } else if(directione.equals("left")){
+             getWorld().addObject(bullet, getX()-48, getY()-2);               
+                
+            }
+
+         bullet.setRotation(getRotation());
+         timer.mark();
+        }   
     private void jump(){
         if(jumping == true){
             if(currentJump <= jumpHight){
@@ -76,46 +125,24 @@ public class Player extends Unit
                 loc(this.getX(), this.getY() - jumpSpeed);
                 currentJump += jumpSpeed;
             }
-            else{
+            else {
                 currentJump = 0;
                 jumping = false;
             }
         }
     }
     private void kill(){
-        if(isTouching(Mexican.class)){
-            removeTouching(Mexican.class);
-            desert.setActMexicans(desert.getActMexicans() - 1);
-            score=score+1;
+        if (isTouching(Mexican.class) || isTouching(Chinese.class) || isTouching(Arab.class)){
+            //Greenfoot.stop();
+            //Greenfoot.setWorld(new desert());
+            coins=0;
+            barrel=0;
+            steel=0;
+            setLocation(29, 577);
+            
         }
-          if(isTouching(Chinese.class)){
-            removeTouching(Chinese.class);
-            desert.setActChinese(desert.getActChinese() - 1);
-             score=score+1;
-        }
-          if(isTouching(Arab.class)){
-            removeTouching(Arab.class);
-            desert.setActArabs(desert.getActArabs() - 1);
-            score=score+1.5; 
-     
-        }
-       
+         
     }
+    //public void setScore(double score) { this.score=score; }
+    //public double getScore() { return score; }
 }
-/*Actor Touched=new Actor();
-        isTouching(Actor);
-        Touched=Actor();
-        switch(Touched){
-            case isTouching(Mexican.class): 
-            removeTouching(Mexican.class);
-            break;
-            case isTouching(Chinese.class): 
-            removeTouching(Chinese.class);
-            break;
-            case isTouching(Arab.class): 
-            removeTouching(Arab.class);
-            break;
-        }
-
- * 
- */

@@ -23,10 +23,13 @@ public class Mexican extends Enemy
             gravity();
         }
         if(grounded()){
-            run(getDirection());
+            run(getDirection(),"mexican.png","mexican.png");
         }
         direction();
         //ab hier alle Aktionen!
+        if(isTouching(Door.class)){
+            setLocation(890, 207);
+        }
     }    
     private void kill(){
                 if(isTouching(Player.class)){
