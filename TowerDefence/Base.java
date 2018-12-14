@@ -8,17 +8,17 @@ import greenfoot.*;
  */
 public class Base extends World
 {
-
     /**
      * Constructor for objects of class Base.
      * 
      */
     public Base()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1000, 600, 1); 
+        // Create a new world with 1001x601 cells with a cell size of 1x1 pixels.
+        super(1001, 601, 1); 
 
         prepare();
+
     }
 
     /**
@@ -29,9 +29,13 @@ public class Base extends World
     {
         this.setBackground(new GreenfootImage("background.png"));
         addObject(new Ground(), 500, 585);
-        addObject(new Player(), 500, 300);
-        addObject(new Mexican("right"), 900, 300);
-        addObject(new Chinese("left"), 900, 300);
-        addObject(new Arab("left"), 900, 300);
+        
+        addObject(new Spawner(this), 0, 0);
+        //addObject(new Player(), 500, 300);
+
+        
+
     }
+
+    
 }

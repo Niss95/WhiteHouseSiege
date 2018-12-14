@@ -6,26 +6,14 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Chinese extends Enemy
+public class Chinese extends TDEnemy
 {
     public Chinese(String direction){
         setSpeed(4);
         setHp(50);
+        setAttackDelay(20);
+        setAttackDamage(100);
         setDirection(direction);
+        setStopPointX(501);
     }
-    
-    /**
-     * Act - do whatever the Chinese wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        if(!this.grounded()){
-            gravity();
-        }
-        if(grounded()){
-            run(getDirection());
-        }
-        //ab hier alle Aktionen!
-    }    
 }
