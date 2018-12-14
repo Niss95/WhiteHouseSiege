@@ -9,7 +9,7 @@ import greenfoot.*;
 public class Player extends Unit
 {
     // änderbar
-    private int jumpHight = 150;    //Wie hoch er in pixeln springen soll
+    private int jumpHight = 75;    //Wie hoch er in pixeln springen soll
     private int jumpSpeed = getForce();  // Wie schnell er springen soll (aktuell gleichgesetzt mit der Gravitation)
     private desert desert;
     
@@ -69,7 +69,7 @@ public class Player extends Unit
             steel++;
             removeTouching(Steel.class);
         }
-        getWorld().showText(coins + "   " + barrel + "    " + steel, 1240, 20);
+        getWorld().showText(coins + "   " + barrel + "     " + steel, 950, 20);
     }
     private void userinput(){
         boolean rightb=false;
@@ -138,7 +138,7 @@ public class Player extends Unit
             coins=0;
             barrel=0;
             steel=0;
-            setLocation(29, 577);
+            setLocation(54, 514);
             
         }
          

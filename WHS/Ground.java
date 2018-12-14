@@ -6,10 +6,9 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Ground extends Grounds
-{
+public class Ground extends Actor{
     public Ground () {
-        getImage().scale(getImage().getWidth()*43, getImage().getHeight());
+        //getImage().scale(getImage().getWidth()*43, getImage().getHeight());
         
     }
     /**

@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class HEADQ extends Objects
+public class HEADQ extends Ground
 {
     public HEADQ(){
         getImage().scale(getImage().getWidth()/2, getImage().getHeight()/2);

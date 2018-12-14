@@ -1,18 +1,18 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Steel here.
+ * Write a description of class Barrels here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Steel extends Objects
+public class Barrels extends Barrel
 {
-    public Steel(){
-        getImage().scale(getImage().getWidth()/6, getImage().getHeight()/6);
+    public Barrels(){
+        getImage().scale(getImage().getWidth()/2, getImage().getHeight()/2);
     }
     /**
-     * Act - do whatever the Steel wants to do. This method is called whenever
+     * Act - do whatever the Barrels wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 

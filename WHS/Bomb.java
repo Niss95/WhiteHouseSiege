@@ -19,7 +19,7 @@ public class Bomb extends Objects
     public void act() 
     {
         move(2);
-        if(getX() == 1790){
+        if(getX() == 940){
             setLocation(0, Greenfoot.getRandomNumber(180)+30);
         }
     }    
