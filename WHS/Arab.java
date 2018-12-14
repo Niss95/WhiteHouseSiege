@@ -31,7 +31,24 @@ public class Arab extends Enemy
         //ab hier alle Aktionen!
         direction();
         beam();
-    }  
+        touchBrick();
+    } 
+    public void touchBrick(){
+        String a=randomDirection();
+        if(isTouching(brick3.class)){
+            setDirection("left");
+        }
+    }
+    public String randomDirection(){
+        int number=Greenfoot.getRandomNumber(100);
+        if(number%2==0){
+            return "right";
+        }
+        else{
+            return "left";
+        }
+    }
+    
     public void beam(){
         if(isTouching(Door.class)){
             setLocation(75,176);

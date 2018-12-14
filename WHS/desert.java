@@ -8,9 +8,9 @@ import greenfoot.*;
  */
 public class desert extends World
 {
-    int max_Mexicans= 11;
-    int max_Chinese= 5;
-    int max_Arabs= 7;
+    int max_Mexicans= 4;
+    int max_Chinese= 2;
+    int max_Arabs= 3;
     
     int act_Mexicans = 0;
     int act_Arabs = 0;
@@ -29,7 +29,7 @@ public class desert extends World
     
     public desert()
     {    
-        super(1800, 600, 1);
+        super(1000, 600, 1);
         prepare();
     }
     
@@ -37,7 +37,7 @@ public class desert extends World
     {
         //this.setBackground(new GreenfootImage(""));
         addObject(new Ground(), 500, 591);
-        addObject(new Player(this), 29, 527);
+        addObject(new Player(this), 56, 514);
         addObject(new Mexican("right"), 500, 300);
         addObject(new Chinese("left"), 900, 300);
         addObject(new Arab("left"), 900, 300);
@@ -50,12 +50,8 @@ public class desert extends World
         brick brick2 = new brick();
         addObject(brick2, 607, 394);
         brick2.setLocation(382, 368);
-        caktus caktus = new caktus();
-        addObject(caktus, 85, 294);
-        caktus caktus2 = new caktus();
-        addObject(caktus2, 635, 411);
-        caktus caktus3 = new caktus();
-        addObject(caktus3, 831, 269);
+        
+       
         Clouds clouds = new Clouds();
         addObject(clouds, 734, 165);
         Clouds clouds2 = new Clouds();
@@ -65,8 +61,8 @@ public class desert extends World
         clouds.setLocation(896, 129);
         Clouds clouds3 = new Clouds();
         addObject(clouds3, 132, 115);
-        caktus2.setLocation(725, 342);
-        caktus.setLocation(48, 247);
+
+        
         Clouds2 clouds22 = new Clouds2();
         addObject(clouds22, 355, 74);
         Barrel barrel = new Barrel();
@@ -74,14 +70,12 @@ public class desert extends World
         barrel.setLocation(358, 301);
         barrel.setLocation(136, 260);
         brick2.setLocation(414, 363);
-        caktus2.setLocation(879, 378);
+
         Cactusl cactusl = new Cactusl();
         addObject(cactusl, 745, 174);
         cactusl.setLocation(713, 275);
-        caktus2.setLocation(841, 390);
-        removeObject(caktus2);
-        cactusl.setLocation(943, 361);
-        caktus3.setLocation(805, 266);
+
+       
         Barrel2 barrel2 = new Barrel2();
         addObject(barrel2, 647, 205);
         barrel2.setLocation(508, 269);
@@ -116,10 +110,10 @@ public class desert extends World
         AirplaneLoad airplaneload = new AirplaneLoad();
         addObject(airplaneload, 210, 163);
         airplaneload.setLocation(88, 170);
-        caktus.setLocation(305, 286);
+        
         barrel.setLocation(419, 260);
         brick.setLocation(129, 233);
-        caktus.setLocation(168, 426);
+        
         brick2.setLocation(276, 293);
         brick.setLocation(168, 230);
         brick brick3 = new brick();
@@ -140,17 +134,7 @@ public class desert extends World
         brick2.setLocation(334, 322);
         brick brick5 = new brick();
         addObject(brick5, 925, 279);
-
         brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(925, 279);
-        brick5.setLocation(966, 263);
         brick5.setLocation(966, 263);
         brick5.setLocation(966, 281);
         door.setLocation(950, 494);
@@ -173,8 +157,7 @@ public class desert extends World
         Tower tower2 = new Tower();
         addObject(tower2, 262, 175);
         tower2.setLocation(237, 189);
-        caktus.setLocation(65, 455);
-        barrel.setLocation(384, 236);
+      
         Airplane2 airplane22 = new Airplane2();
         addObject(airplane22, 706, 89);
         airplane22.setLocation(965, 45);
@@ -186,11 +169,10 @@ public class desert extends World
         brick2.setLocation(499, 350);
         brick5.setLocation(726, 393);
         barrel2.setLocation(704, 256);
-        removeObject(caktus3);
+
 
         brick2.setLocation(652, 326);
 
-      
         brick brick6 = new brick();
         addObject(brick6, 882, 370);
         brick2 brick22 = new brick2();
@@ -210,6 +192,149 @@ public class desert extends World
         steel.setLocation(1306, 125);
         removeObject(steel);
         door.setLocation(1759, 477);
+        brick brick7 = new brick();
+        addObject(brick7, 266, 289);
+        brick7.setLocation(278, 283);
+        brick brick8 = new brick();
+        addObject(brick8, 116, 333);
+        brick8.setLocation(172, 327);
+        brick3.setLocation(66, 384);
+        barrel3.setLocation(25, 348);
+       
+        
+
+        coin.setLocation(893, 18);
+        Barrels barrels = new Barrels();
+        addObject(barrels, 967, 161);
+        barrels.setLocation(942, 18);
+        Steel steel2 = new Steel();
+        addObject(steel2, 864, 147);
+        steel2.setLocation(980, 21);
+        coin.setLocation(886, 18);
+        barrels.setLocation(929, 18);
+        steel2.setLocation(970, 20);
+        barrels.setLocation(927, 17);
+        barrels.setLocation(927, 18);
+        barrels.setLocation(927, 19);
+        steel2.setLocation(969, 20);
+        door.setLocation(959, 479);
+        clouds23.setLocation(339, 110);
+        removeObject(clouds23);
+        removeObject(bomb2);
+        airplane22.setLocation(858, 44);
+        airplane22.setLocation(544, 50);
+        airplane22.setLocation(544, 47);
+        brick8.setLocation(59, 294);
+        brick7.setLocation(192, 294);
+        brick4.setLocation(271, 351);
+        brick3.setLocation(75, 403);
+        brick4.setLocation(211, 365);
+        brick3.setLocation(65, 405);
+        brick4.setLocation(266, 361);
+        brick5.setLocation(198, 377);
+        brick3.setLocation(64, 426);
+        barrel3.setLocation(16, 390);
+        barrel.setLocation(702, 289);
+        barrel2.setLocation(737, 219);
+        barrel2.setLocation(744, 51);
+        barrel2.setLocation(394, 38);
+        barrel2.setLocation(379, 119);
+        barrel2.setLocation(489, 205);
+        brick22.setLocation(927, 259);
+        brick3 brick32 = new brick3();
+        addObject(brick32, 364, 257);
+        brick32.setLocation(471, 269);
+        brick3 brick33 = new brick3();
+        addObject(brick33, 573, 277);
+        brick33.setLocation(592, 269);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(971, 268);
+        brick22.setLocation(995, 263);
+        brick22.setLocation(995, 268);
+        brick2 brick23 = new brick2();
+        addObject(brick23, 882, 273);
+        brick23.setLocation(893, 271);
+        brick23.setLocation(891, 277);
+        brick22.setLocation(995, 270);
+        brick23.setLocation(891, 273);
+        brick23.setLocation(888, 270);
+        brick4 brick42 = new brick4();
+        addObject(brick42, 171, 235);
+        brick4 brick43 = new brick4();
+        addObject(brick43, 75, 233);
+        brick43.setLocation(74, 224);
+        brick.setLocation(269, 407);
+        brick42.setLocation(172, 224);
+        brick43.setLocation(62, 221);
+        brick42.setLocation(172, 221);
+        brick4 brick44 = new brick4();
+        addObject(brick44, 262, 306);
+        brick44.setLocation(253, 294);
+        brick44.setLocation(250, 294);
+        brick42.setLocation(161, 221);
+        brick32.setLocation(489, 269);
+        brick3 brick34 = new brick3();
+        addObject(brick34, 439, 311);
+        brick34.setLocation(433, 359);
+        removeObject(brick8);
+        removeObject(brick7);
+        brickmove brickmove = new brickmove();
+        addObject(brickmove, 590, 380);
+        brickmove.setLocation(590, 382);
+        brickmove.setLocation(569, 389);
+        brickmove.setLocation(410, 397);
+        removeObject(brick);
     }
 
     public void act(){
