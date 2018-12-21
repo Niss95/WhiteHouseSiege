@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Player
+comment0.text=\n\ Write\ a\ description\ of\ class\ Player\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Player()
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ jump()\ und\ gravity()\ m\u00FCssen\ bei\ jedem\ durchlauf\ gecheckt\ werden\!\n\ \n
+comment3.params=
+comment3.target=void\ ShowScore()
+comment4.params=
+comment4.target=void\ userinput()
+comment5.params=directione
+comment5.target=void\ shoot(java.lang.String)
+comment6.params=
+comment6.target=void\ jump()
+comment7.params=
+comment7.target=void\ kill()
+numComments=8
