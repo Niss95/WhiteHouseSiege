@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Player()
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\n\ jump()\ und\ gravity()\ m\u00FCssen\ bei\ jedem\ durchlauf\ gecheckt\ werden\!\n\ \n
+comment2.params=
+comment2.target=void\ ShowScore()
+comment3.params=
+comment3.target=void\ userinput()
+comment4.params=directione
+comment4.target=void\ shoot(java.lang.String)
+comment5.params=
+comment5.target=void\ jump()
+comment6.params=
+comment6.target=void\ kill()
+comment7.params=
+comment7.target=void\ changeWorld()
+numComments=8
