@@ -8,14 +8,9 @@ import greenfoot.*;
  */
 public class Level extends World
 {
-
-    /**
-     * Constructor for objects of class Level.
-     * 
-     */
-    public Level()
+    public Level(int width, int height)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(width, height, 1); 
     }
 }

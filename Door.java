@@ -6,17 +6,12 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Door extends Objects
+public class Door extends LevelObjects
 {
+    private GreenfootImage image = new GreenfootImage("coin.png");
+    
     public Door(){
+        this.setImage(image);
         getImage().scale(getImage().getWidth()/3, getImage().getHeight()/3);
     }
-    /**
-     * Act - do whatever the Door wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        
-    }    
 }

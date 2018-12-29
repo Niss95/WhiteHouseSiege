@@ -8,54 +8,70 @@ import greenfoot.*;
  */
 public class Bullet extends Unit
 {
-    int counterArab=2;
-    int directione=0;
-    boolean killed=false;
+    private GreenfootImage image = new GreenfootImage("bullet.png");
+
+    private int directione=0;
+
     public Bullet(String direction){
+        this.setImage(image);
+        
         if(direction.equals("left")){
             directione=-10;
         } else if(direction.equals("right")){
             directione=10;
         }
     }
-    /**
-     * Act - do whatever the Bullet wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
     public void act() 
     {
         move(directione);
-        kill();
-        }
-    private void kill(){
-        desert desert = (desert) getWorld();
-        Player player = new Player(desert);
-        Arab arab = new Arab("left");
-        
-        if (isTouching(Mexican.class)){
-           removeTouching(Mexican.class);
-           desert.setActMexicans(desert.getActMexicans() - 1);
-           killed=true;
-        }
-          if (isTouching(Chinese.class)){
-            removeTouching(Chinese.class);
-            desert.setActChinese(desert.getActChinese()-1);
-            killed=true;
-        }
-          if(isTouching(Arab.class)){ // mit leben löuft noch nicht
-           counterArab=counterArab+1;
-           killed=true;
-        }
-        if(counterArab==0) { // tötet ihn noch nicht
+        hitCheck();
+    }
 
-            
-            //player.setScore(player.getScore()+1);            removeTouching(Arab.class);
-            desert.setActArabs(desert.getActArabs()-1);
-            killed=true;
+    private void hitCheck(){
+        if(getWorld() instanceof Platformer){
+            if (isTouching(Mexican.class)){
+                ((Unit) getOneIntersectingObject(Mexican.class)).hurt(((Unit) getOneIntersectingObject(Mexican.class)).getHpMax());
+                removeMe();
+                return;
+            }
+            if (isTouching(Chinese.class)){
+                ((Unit) getOneIntersectingObject(Chinese.class)).hurt(((Unit) getOneIntersectingObject(Chinese.class)).getHpMax());
+                removeMe();
+                return;
+            }
+            if(isTouching(Arab.class)){
+                ((Unit) getOneIntersectingObject(Arab.class)).hurt(((Unit) getOneIntersectingObject(Arab.class)).getHpMax() / 2);
+                removeMe();
+                return;
+            }
         }
-        if(this.isAtEdge() || killed == true){
-            getWorld().removeObject(this); 
+        
+        else if(getWorld() instanceof Base){
+            if (isTouching(TD_Mexican.class)){
+                ((Unit) getOneIntersectingObject(TD_Mexican.class)).hurt(((Unit) getOneIntersectingObject(TD_Mexican.class)).getHpMax());
+                removeMe();
+                return;
+            }
+            if (isTouching(TD_Chinese.class)){
+                ((Unit) getOneIntersectingObject(TD_Chinese.class)).hurt(((Unit) getOneIntersectingObject(TD_Chinese.class)).getHpMax());
+                removeMe();
+                return;
+            }
+            if(isTouching(TD_Arab.class)){
+                ((Unit) getOneIntersectingObject(TD_Arab.class)).hurt(((Unit) getOneIntersectingObject(TD_Arab.class)).getHpMax() / 2);
+                removeMe();
+                return;
+            }
+        }
+
+        if(this.isAtEdge()){
+            removeMe();
+            return;
         }
     }
+
+    private void removeMe(){
+        getWorld().removeObject(this);
+    }
 }
-  

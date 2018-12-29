@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.params=direction\ imageRight\ imageLeft
+comment0.target=void\ run(java.lang.String,\ greenfoot.GreenfootImage,\ greenfoot.GreenfootImage)
+comment1.params=
+comment1.target=void\ direction()
+numComments=2

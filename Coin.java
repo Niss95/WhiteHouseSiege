@@ -6,14 +6,11 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Coin extends Objects
+public class Coin extends Collectables
 {
-    /**
-     * Act - do whatever the Coin wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
+    private GreenfootImage image = new GreenfootImage("coin.png");
+
+    public Coin(){
+        this.setImage(image);
     }    
 }

@@ -8,10 +8,14 @@ import greenfoot.*;
  */
 public class Player extends Unit
 {
+    private GreenfootImage image_right = new GreenfootImage("player_right.png");
+    private GreenfootImage image_left = new GreenfootImage("player_left.png");
+
+    
     // änderbar
-    private int jumpHight = 75;    //Wie hoch er in pixeln springen soll
+    private int jumpHight = 150;    //Wie hoch er in pixeln springen soll
     private int jumpSpeed = getForce();  // Wie schnell er springen soll (aktuell gleichgesetzt mit der Gravitation)
-    private desert desert;
+    private Desert desert;
     
     //Tastenbelegung:
     private String right = "right";
@@ -22,17 +26,19 @@ public class Player extends Unit
     private int currentJump = 0;    
     private boolean jumping = false;
     private boolean spacedown = false;
+    
     private int coins=0;
     private int barrel=0;
     private int steel=0;
+    
     private SimpleTimer timer=new SimpleTimer();
     private String direction="right";
     private boolean shooot=false;
      
     
     // standard Konstruktor
-    public Player(desert desert){
-        this.desert = desert;
+    public Player(){
+        this.setImage(image_right);
         setHp(100);
         setSpeed(10);
 
@@ -52,14 +58,14 @@ public class Player extends Unit
         jump();
         userinput();
         kill();
-        
+        changeWorld();
      
         //ab hier alle Aktionen!
     }   
     private void ShowScore(){
-        if(isTouching(Barrel.class)){
+        if(isTouching(Barrels.class)){
             barrel++;
-            removeTouching(Barrel.class);
+            removeTouching(Barrels.class);
         }
         if(isTouching(Coin.class)){
             coins++;
@@ -69,23 +75,22 @@ public class Player extends Unit
             steel++;
             removeTouching(Steel.class);
         }
-        getWorld().showText(coins + "    " + barrel + "      " + steel, 1700, 20);
+        getWorld().showText(coins + "     " + barrel + "      " + steel, 1697, 20);
     }
     private void userinput(){
         boolean rightb=false;
         if(Greenfoot.isKeyDown(left)){
-            this.setImage("TrumpGGl.png");
+            this.setImage(image_left);
             moveLeft();
             direction="left";
         }
         if(Greenfoot.isKeyDown(right)){
-            this.setImage("TrumpGGr.png");
+            this.setImage(image_right);
             moveRight();   
             direction="right";
         }
-        if(!spacedown && "space".equals(Greenfoot.getKey()) && timer.millisElapsed() >= 400){
+        if(!spacedown && "space".equals(Greenfoot.getKey()) && timer.millisElapsed() >= 900){
             if(!shooot){
-            this.setImage("TrumpGGr.png");
             shooot=true;
         
         }
@@ -113,6 +118,7 @@ public class Player extends Unit
          bullet.setRotation(getRotation());
          timer.mark();
         }   
+        
     private void jump(){
         if(jumping == true){
             if(currentJump <= jumpHight){
@@ -131,16 +137,34 @@ public class Player extends Unit
             }
         }
     }
+    
     private void kill(){
-        if (isTouching(Mexican.class) || isTouching(Chinese.class) || isTouching(Arab.class)){
-            //Greenfoot.stop();
-            //Greenfoot.setWorld(new desert());
-            coins=0;
-            barrel=0;
-            steel=0;
-            setLocation(45, 718);
+        if(isTouching(HQ.class) == false){
+            
+            if (isTouching(Mexican.class) || isTouching(Chinese.class) || isTouching(Arab.class)){
+                //Greenfoot.stop();
+                //Greenfoot.setWorld(new desert());
+                coins=0;
+                barrel=0;
+                steel=0;
+                setLocation(29, 577);
+            }
             
         }
          
     }
+    
+    private void changeWorld(){
+        if(getWorld() instanceof Forest && getX() == 0){
+            Greenfoot.stop();
+            Greenfoot.setWorld(new Desert());
+        }
+         if(getWorld() instanceof Forest && getX() == 1789){
+            Greenfoot.stop();
+            //Greenfoot.setWorld(new clearing());
+        }
+    }
+
+    //public void setScore(double score) { this.score=score; }
+    //public double getScore() { return score; }
 }

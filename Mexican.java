@@ -6,11 +6,15 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Mexican extends Enemy
+public class Mexican extends PlatformerEnemys
 {
+    private GreenfootImage image_right = new GreenfootImage("mexican_right.png");
+    private GreenfootImage image_left = new GreenfootImage("mexican_left.png");
+
     public Mexican(String direction){
-        setSpeed(1);
-        setHp(100);
+        this.setImage(image_right);
+        setSpeed(3);
+        initHp(100);
         setDirection(direction);
     }
     /**
@@ -23,18 +27,18 @@ public class Mexican extends Enemy
             gravity();
         }
         if(grounded()){
-            run(getDirection(),"mexican.png","mexican.png");
+            run(getDirection(), image_right, image_left);
         }
         direction();
         //ab hier alle Aktionen!
         if(isTouching(Door.class)){
             setLocation(890, 207);
         }
+        
+        
+        checkDeath();
     }    
-    private void kill(){
-                if(isTouching(Player.class)){
-                    removeTouching(Mexican.class);
-                }
-            }
+    
+    
         }
 

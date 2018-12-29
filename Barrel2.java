@@ -6,14 +6,11 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Barrel2 extends Barrel
+public class Barrel2 extends Barrels
 {
-    /**
-     * Act - do whatever the Barrel2 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
+    private GreenfootImage image = new GreenfootImage("barrel2.png");
+
+    public Barrel2(){
+        this.setImage(image);
     }    
 }

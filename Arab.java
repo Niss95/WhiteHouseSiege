@@ -6,12 +6,16 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Arab extends Enemy
+public class Arab extends PlatformerEnemys
 {
-    int leben=2;
+    private GreenfootImage image_right = new GreenfootImage("arab_right.png");
+    private GreenfootImage image_left = new GreenfootImage("arab_left.png");
+
+    
     public Arab(String direction){
+        this.setImage(image_right);
         setSpeed(2);
-        setHp(100);
+        initHp(200);
         setDirection(direction);
     }
     
@@ -21,43 +25,26 @@ public class Arab extends Enemy
      */
     public void act() 
     {
+        
+        
         if(!this.grounded()){
             gravity();
         }
         if(grounded()){
-            run(getDirection(), "arab1.png", "arab1links.png"); //////hier!
+            run(getDirection(), image_right, image_left); //////hier!
         }
         
         //ab hier alle Aktionen!
         direction();
         beam();
-        touchBrick();
-    } 
-    public void touchBrick(){
-        String a=randomDirection();
-        if(isTouching(brick3.class)){
-            setDirection("left");
-        }
-    }
-    public String randomDirection(){
-        int number=Greenfoot.getRandomNumber(100);
-        if(number%2==0){
-            return "right";
-        }
-        else{
-            return "left";
-        }
-    }
+        
+        checkDeath();
+    }  
     
     public void beam(){
         if(isTouching(Door.class)){
             setLocation(75,176);
         }
     }
-    public void setLeben(int leben) {
-        this.leben=leben;
-    }
-    public int getLeben() {
-        return this.leben;
-    }
+  
 }

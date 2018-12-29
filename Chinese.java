@@ -6,11 +6,15 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Chinese extends Enemy
+public class Chinese extends PlatformerEnemys
 {
+    private GreenfootImage image_right = new GreenfootImage("chinese_right.png");
+    private GreenfootImage image_left = new GreenfootImage("chinese_left.png");
+
     public Chinese(String direction){
-        setSpeed(2);
-        setHp(50);
+        this.setImage(image_right);
+        setSpeed(4);
+        initHp(50);
         setDirection(direction);
     }
     
@@ -24,11 +28,14 @@ public class Chinese extends Enemy
             gravity();
         }
         if(grounded()){
-            run(getDirection(),"asianRight.png", "asianLeft.png");
+            run(getDirection(), image_right, image_left);
         }
         //ab hier alle Aktionen!
         direction();
         beam();
+        
+        
+        checkDeath();
     }    
     public void beam(){
         if(isTouching(Door.class)){
