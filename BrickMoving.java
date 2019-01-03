@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class BrickMoving extends Platforms
 {
-    private GreenfootImage image = new GreenfootImage("base_ground.png");
+    private GreenfootImage image = new GreenfootImage("brick4.png");
 
     public BrickMoving(){
         this.setImage(image);

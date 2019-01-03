@@ -15,8 +15,8 @@ public class Desert extends Platformer
     
     //----------------------------------------------
     int max_Mexicans= 4;
-    int max_Chinese= 2;
-    int max_Arabs= 3;
+    int max_Chinese= 3;
+    int max_Arabs= 4;
     
     int act_Mexicans = 0;
     int act_Arabs = 0;
@@ -40,18 +40,114 @@ public class Desert extends Platformer
     
     private void prepare()
     {
-        
-
-        ground = new Base_Ground();
-        addObject(ground, width / 2, height - (ground.getImage().getHeight() / 2));
-        
+        Desert_Ground desg = new Desert_Ground();
+        addObject(desg,500, 900);
         spawnObjects();
+        addRessources();
+
+        addObject(new Door(),1312, 778);
+        Brick4 brick47 = new Brick4();
+        addObject(brick47, 146, 247);
+        Brick4 brick48 = new Brick4();
+        addObject(brick48, 250, 250);
+        brick48.setLocation(251, 247);
+        Brick4 brick49 = new Brick4();
+        addObject(brick49, 20, 293);
+        Brick4 brick410 = new Brick4();
+        addObject(brick410, 325, 304);
+        Brick4 brick411 = new Brick4();
+        addObject(brick411, 243, 457);
+        Brick4 brick412 = new Brick4();
+        addObject(brick412, 120, 398);
+        BrickMoving brickmoving = new BrickMoving();
+        addObject(brickmoving, 51, 657);
+        BrickMoving brickmoving2 = new BrickMoving();
+        addObject(brickmoving2, 1576, 455);
+        BrickMoving brickmoving3 = new BrickMoving();
+        addObject(brickmoving3, 1642, 765);
+        BrickMoving brickmoving4 = new BrickMoving();
+        addObject(brickmoving4, 39, 292);
+
+        Brick3 brick33 = new Brick3();
+        addObject(brick33, 948, 285);
+        Brick3 brick34 = new Brick3();
+        addObject(brick34, 858, 288);
+        brick34.setLocation(858, 286);
+        brick33.setLocation(987, 286);
+        Brick3 brick35 = new Brick3();
+        addObject(brick35, 1089, 338);
+        Brick3 brick36 = new Brick3();
+        addObject(brick36, 767, 385);
+        Brick3 brick37 = new Brick3();
+        addObject(brick37, 841, 438);
+        Brick3 brick38 = new Brick3();
+        addObject(brick38, 695, 547);
+        Brick3 brick39 = new Brick3();
+        addObject(brick39, 915, 649);
+        Brick2 brick28 = new Brick2();
+        addObject(brick28, 1498, 285);
+        Brick2 brick29 = new Brick2();
+        addObject(brick29, 1607, 292);
+        brick29.setLocation(1582, 285);
+        Brick2 brick210 = new Brick2();
+        addObject(brick210, 1728, 326);
+        brick210.setLocation(1732, 348);
+        Brick2 brick211 = new Brick2();
+        addObject(brick211, 1347, 401);
+        Brick2 brick212 = new Brick2();
+        addObject(brick212, 1594, 624);
+        brick212.setLocation(1576, 624);
+
+        Brick3 brick312 = new Brick3();
+        addObject(brick312, 977, 598);
+        brick312.setLocation(1000, 591);
+        Cloud1 cloud1 = new Cloud1();
+        addObject(cloud1, 80, 29);
+        Cloud1 cloud12 = new Cloud1();
+        addObject(cloud12, 606, 41);
+        Cloud1 cloud13 = new Cloud1();
+        addObject(cloud13, 467, 132);
+        Cloud1 cloud14 = new Cloud1();
+        addObject(cloud14, 1375, 133);
+        Cloud1 cloud15 = new Cloud1();
+        addObject(cloud15, 1678, 48);
+        Cloud1 cloud16 = new Cloud1();
+        addObject(cloud16, 1705, 186);
+        cloud16.setLocation(1746, 92);
+        Cloud1 cloud17 = new Cloud1();
+        addObject(cloud17, 1063, 35);
+        Cloud2 cloud2 = new Cloud2();
+        addObject(cloud2, 55, 100);
+        Cloud2 cloud22 = new Cloud2();
+        addObject(cloud22, 67, 83);
+        Cloud2 cloud23 = new Cloud2();
+        addObject(cloud23, 520, 71);
+        Cloud2 cloud24 = new Cloud2();
+        addObject(cloud24, 1107, 47);
+        Cloud2 cloud25 = new Cloud2();
+        addObject(cloud25, 1407, 80);
+        Cloud2 cloud26 = new Cloud2();
+        addObject(cloud26, 1758, 85);
+        cloud22.setLocation(124, 30);
+        Bomb2 bomb23 = new Bomb2();
+        addObject(bomb23, 526, 113);
+
+        Cactus2 cactus2 = new Cactus2();
+        addObject(cactus2, 585, 342);
+        Cactus2 cactus22 = new Cactus2();
+        addObject(cactus22, 75, 345);
+        cactus22.setLocation(75, 332);
+        Cactus2 cactus23 = new Cactus2();
+        addObject(cactus23, 1524, 582);
+        cactus23.setLocation(1640, 558);
+        Cactus2 cactus24 = new Cactus2();
+        addObject(cactus24, 1280, 561);
     }
     
     private void spawnObjects(){
         
         Player player = new Player();
-        addObject(player, 45, 718);
+        addObject(player, 60, 718);
         addObject(new Mexican("right"), 500, 300);
         addObject(new Chinese("left"), 900, 300);
         addObject(new Arab("left"), 900, 300);
@@ -59,215 +155,34 @@ public class Desert extends Platformer
         act_Mexicans= act_Mexicans+1;
         act_Chinese=act_Chinese +1;
         act_Arabs=act_Arabs+1;
-
-        Steel steel2 = new Steel();
-        Coin coin = new Coin();
-        Barrels barrels = new Barrel1();
-        addObject(barrels, 1675, 22);
-        addObject(steel2, 1724, 22);
-        addObject(coin, 1621, 21);
-
-        Platforms brick1= new Brick1();
-        addObject(brick1, 57, 501);
-        brick1.setLocation(124, 480);
-        Platforms brick2 = new Brick1();
-        addObject(brick2, 607, 394);
-        brick2.setLocation(382, 368);
-
-        Clouds clouds = new Cloud1();
-        addObject(clouds, 734, 165);
-        Clouds clouds2 = new Cloud2();
-        addObject(clouds2, 870, 208);
-        clouds2.getY();
-        clouds2.setLocation(695, 67);
-        clouds.setLocation(896, 129);
-        Clouds clouds3 = new Cloud1();
-        addObject(clouds3, 132, 115);
-
-        Clouds clouds22 = new Cloud2();
-        addObject(clouds22, 355, 74);
-        Barrels barrel1 = new Barrel1();
-        Barrels barrel2 = new Barrel2();
-        addObject(barrel1, 393, 221);
-        addObject(barrel2, 393, 221);
-        barrel1.setLocation(358, 301);
-        barrel2.setLocation(136, 260);
-        brick2.setLocation(414, 363);
-
-        //Airplane airplane = new Airplane();
-        //addObject(airplane, 618, 90);
-        //airplane.setLocation(917, 79);
-        //clouds.setLocation(908, 137);
-        //Bomb bomb = new Bomb();
-        //addObject(bomb, 532, 99);
-        //bomb.setLocation(212, 57);
-        //Bomb bomb2 = new Bomb();
-        //addObject(bomb2, 288, 86);
-        //bomb.setLocation(212, 44);
-        //bomb2.setLocation(217, 81);
-        //removeObject(airplane);
-        //Airplane airplane2 = new Airplane();
-        //addObject(airplane2, 853, 59);
-        //airplane2.setLocation(905, 94);
-        //Clouds2 clouds23 = new Clouds2();
-        //addObject(clouds23, 340, 110);
-        Door door = new Door();
-        addObject(door, 789, 402);
-        door.setLocation(963, 530);
-        door.setLocation(965, 540);
-        //AirplaneLoad airplaneload = new AirplaneLoad();
-        //addObject(airplaneload, 210, 163);
-        //airplaneload.setLocation(88, 170);
-
-        barrel1.setLocation(419, 260);
-        brick1.setLocation(129, 233);
-
-        brick2.setLocation(276, 293);
-        brick1.setLocation(168, 230);
-        Platforms brick3 = new Brick1();
-        addObject(brick3, 443, 413);
-        brick3.setLocation(134, 349);
-        brick3.setLocation(136, 367);
-        //Temple temple = new Temple();
-        //addObject(temple, 934, 210);
-        //TempelChina tempelchina = new TempelChina();
-        //addObject(tempelchina, 580, 162);
-        //tempelchina.setLocation(530, 183);
-        //tempelchina.setLocation(535, 182);
-        Platforms brick4 = new Brick1();
-        addObject(brick4, 642, 275);
-        brick4.setLocation(495, 268);
-        brick2.setLocation(278, 312);
-        brick3.setLocation(135, 384);
-        brick2.setLocation(334, 322);
-        Platforms brick5 = new Brick1();
-        addObject(brick5, 925, 279);
+      Steel steel2 = new Steel();
+      Coin coin = new Coin();
+      Barrel2k barrel = new Barrel2k();
+      addObject(barrel, 1675, 22);
+      addObject(steel2, 1724, 22);
+      addObject(coin, 1621, 21);  
+      addObject(new Plane1(), 208, 170);
+      addObject(new Plane2(), 917, 79);
+      Barrels barrel2 = new Barrel2();
+      addObject(barrel2, 136, 260);
+      Bomb2 bomb = new Bomb2();
+      addObject(bomb, 212, 44);
+      Bomb2 bomb2 = new Bomb2();
+      addObject(bomb2, 1560, 81);
       
-        brick5.setLocation(966, 281);
-        door.setLocation(950, 494);
-        door.setLocation(958, 494);
+      Tempel temple = new Tempel();
+      addObject(temple, 1539, 215);
+      Tempel_China tempelchina = new Tempel_China();
+      addObject(tempelchina, 949, 185);
+      Tower tower = new Tower();
+      addObject(tower, 320, 189);
+      Tower tower2 = new Tower();
+      addObject(tower2, 360, 189);
+      HQ headq = new HQ();
+      addObject(headq, 38, 775);
       
-        //airplane2.setLocation(1779, 172);
-        
-        door.setLocation(1759, 467);
-        Barrels barrel3 = new Barrel1();
-        addObject(barrel3, 1237, 221);
       
-        barrel3.setLocation(35, 352);
-        
 
-        //Airplane2 airplane22 = new Airplane2();
-        //addObject(airplane22, 706, 89);
-        //airplane22.setLocation(965, 45);
-        HQ headq = new HQ();
-        addObject(headq, 59, 558);
-        headq.setLocation(46, 571);
-        brick4.setLocation(570, 516);
-        brick1.setLocation(139, 231);
-       
-        brick5.setLocation(726, 393);
-
-       
-        Platforms brick6 = new Brick1();
-        addObject(brick6, 882, 370);
-        Platforms brick22 = new Brick2();
-        addObject(brick22, 866, 270);
-        brick22.setLocation(874, 261);
-
-        Barrels barrel4 = new Barrel1();
-        addObject(barrel4, 1337, 82);
-        barrel4.setLocation(1313, 28);
-
-        barrel4.setLocation(1290, 29);
-        barrel4.setLocation(1296, 45);
-        removeObject(barrel4);
-        Steel steel = new Steel();
-        addObject(steel, 1344, 73);
-        steel.setLocation(1306, 125);
-        removeObject(steel);
-        door.setLocation(1759, 477);
-        Platforms brick7 = new Brick1();
-        addObject(brick7, 266, 289);
-        brick7.setLocation(278, 283);
-        Platforms brick8 = new Brick1();
-        addObject(brick8, 116, 333);
-        brick8.setLocation(172, 327);
-        brick3.setLocation(66, 384);
-        barrel3.setLocation(25, 348);
-
-        door.setLocation(959, 479);
-        //clouds23.setLocation(339, 110);
-        //removeObject(clouds23);
-        //removeObject(bomb2);
-        //airplane22.setLocation(858, 44);
-        //airplane22.setLocation(544, 50);
-        //airplane22.setLocation(544, 47);
-        brick8.setLocation(59, 294);
-        brick7.setLocation(192, 294);
-        
-        brick5.setLocation(198, 377);
-        brick3.setLocation(64, 426);
-        barrel3.setLocation(16, 390);
-        barrel1.setLocation(702, 289);
-
-        brick22.setLocation(927, 259);
-        Platforms brick32 = new Brick3();
-        addObject(brick32, 364, 257);
-        brick32.setLocation(471, 269);
-        Platforms brick33 = new Brick3();
-        addObject(brick33, 573, 277);
-        brick33.setLocation(592, 269);
-
-  
-   
-        Platforms brick23 = new Brick2();
-        addObject(brick23, 882, 273);
-       
-        Platforms brick42 = new Brick4();
-        addObject(brick42, 171, 235);
-        Platforms brick43 = new Brick4();
-        addObject(brick43, 75, 233);
-       
-        //brick.setLocation(269, 407);
-       
-        brick42.setLocation(172, 221);
-        Platforms brick44 = new Brick4();
-        addObject(brick44, 262, 306);
-       
-        brick42.setLocation(161, 221);
-        brick32.setLocation(489, 269);
-        Platforms brick34 = new Brick3();
-        addObject(brick34, 439, 311);
-        brick34.setLocation(433, 359);
-        removeObject(brick8);
-        removeObject(brick7);
-       
-        //removeObject(brick);
-
-        headq.setLocation(44, 774);
-        brick5.setLocation(66, 809);
-        headq.setLocation(38, 775);
-
-       
-       
-        //tempelchina.setLocation(949, 185);
-        
-        //airplaneload.setLocation(176, 171);
-        brick42.setLocation(202, 228);
-        brick43.setLocation(94, 270);
-       
-        //temple.setLocation(1539, 215);
-        
-        brick22.setLocation(1582, 297);
-        brick23.setLocation(1450, 329);
-        brick6.setLocation(881, 370);
-        
-        brick32.setLocation(1032, 286);
-        brick33.setLocation(898, 286);
-        brick34.setLocation(835, 339);
-        brick44.setLocation(209, 324);
-        
-        brick43.setLocation(95, 276);
     }
     
     public void act(){
@@ -276,9 +191,33 @@ public class Desert extends Platformer
         addEnemys();
         if (time==0) {
                 Greenfoot.stop();
-                Greenfoot.setWorld(new Forest());     
+                Greenfoot.setWorld(new Base());     
             }                
-        }      
+        } 
+         private void addRessources(){
+        for(int j=0; j < 3;j++){
+            for(int i=0; i < 5; i++){
+            int h = Greenfoot.getRandomNumber(900);
+            int b = Greenfoot.getRandomNumber(1750);
+            int c = Greenfoot.getRandomNumber(30);
+            
+            if(c <= 10){
+                addObject(new Brick4(), b, h);
+            } else if( c > 10 && c <= 20){
+                addObject(new Brick3(), b, h);
+            } else{
+                addObject(new Brick2(), b, h);
+            }
+            if(j==1){
+            addObject(new Barrel2(), b -20, h - 35);
+           } else if(j==2){            
+            addObject(new Steel(), b, h - 25);
+           } else if(j==0){
+            addObject(new Coin(), b+25, h-20);
+           }
+        }   
+    }
+}
         
     public int getRandomNumber(int start, int end){
         int number=Greenfoot.getRandomNumber(end);

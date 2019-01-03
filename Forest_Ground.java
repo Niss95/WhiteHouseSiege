@@ -9,6 +9,6 @@ import greenfoot.*;
 public class Forest_Ground extends Grounds
 {
     public Forest_Ground(){
-        this.setImage(new GreenfootImage("base_ground.png"));
+        this.setImage(new GreenfootImage("FOORESTground.png"));
     }
 }

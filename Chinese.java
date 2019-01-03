@@ -39,7 +39,11 @@ public class Chinese extends PlatformerEnemys
     }    
     public void beam(){
         if(isTouching(Door.class)){
-            setLocation(535,182);
+            if(getWorld() instanceof Forest){
+                setLocation(1118,419);
+            } else {
+                setLocation(949,185);
+            }
         }
     }
 }

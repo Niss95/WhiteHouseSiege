@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Door extends LevelObjects
 {
-    private GreenfootImage image = new GreenfootImage("coin.png");
+    private GreenfootImage image = new GreenfootImage("lakzsmid.png");
     
     public Door(){
         this.setImage(image);

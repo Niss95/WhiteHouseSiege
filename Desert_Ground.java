@@ -9,6 +9,6 @@ import greenfoot.*;
 public class Desert_Ground extends Grounds
 {
     public Desert_Ground(){
-        this.setImage(new GreenfootImage("base_ground.png"));
+        this.setImage(new GreenfootImage("desground5.png"));
     }
 }

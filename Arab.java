@@ -43,7 +43,11 @@ public class Arab extends PlatformerEnemys
     
     public void beam(){
         if(isTouching(Door.class)){
-            setLocation(75,176);
+            if(getWorld() instanceof Forest){
+                setLocation(208,215);
+            } else {
+                setLocation(75,176);
+            }
         }
     }
   

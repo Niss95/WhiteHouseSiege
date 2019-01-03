@@ -8,9 +8,10 @@ import greenfoot.*;
  */
 public class Barrel2 extends Barrels
 {
-    private GreenfootImage image = new GreenfootImage("barrel2.png");
+    private GreenfootImage image = new GreenfootImage("goldbarrel.png");
 
     public Barrel2(){
         this.setImage(image);
+        getImage().scale(getImage().getWidth()/5, getImage().getHeight()/4);
     }    
 }
