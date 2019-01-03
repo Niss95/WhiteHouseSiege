@@ -17,6 +17,7 @@ abstract public class Unit extends Actor
     private int hpMax = 1;
 
     private int attack = 1;
+    private int attackSpeed = 1;
 
     public void gravity(){
         this.setLocation(this.getX(), this.getY() + force);
@@ -50,6 +51,11 @@ abstract public class Unit extends Actor
         }
     }
 
+    
+    public boolean checkIsWhiteHouseAlive(){
+        return !getWorld().getObjects(WhiteHouse.class).isEmpty();
+    }
+    
     public void loc(int x, int y){this.setLocation(x,y);}
 
     // Getter / Setter -------------------------------------------------------------------------------------------------------------------------------------
@@ -92,6 +98,14 @@ abstract public class Unit extends Actor
 
     public void setAttack(int attack){
         this.attack = attack;
+    }
+    
+    public int getAttackSpeed(){
+        return attackSpeed;
+    }
+
+    public void setAttackSpeed(int attackSpeed){
+        this.attackSpeed = attackSpeed;
     }
 
     public int getForce(){

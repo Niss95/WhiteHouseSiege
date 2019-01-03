@@ -1,2 +1,12 @@
 #BlueJ class context
-numComments=0
+comment0.params=
+comment0.target=void\ act()
+comment1.params=
+comment1.target=void\ checkRun()
+comment2.params=
+comment2.target=void\ checkGravity()
+comment3.params=
+comment3.target=void\ checkAttack()
+comment4.params=image_right\ image_left
+comment4.target=void\ setImages(greenfoot.GreenfootImage,\ greenfoot.GreenfootImage)
+numComments=5

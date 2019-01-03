@@ -8,12 +8,15 @@ import greenfoot.*;
  */
 public class TD_Arab extends TowerDefenceEnemys
 {
-    /**
-     * Act - do whatever the TD_Arab wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+    private GreenfootImage image_right = new GreenfootImage("arab_right.png");
+    private GreenfootImage image_left = new GreenfootImage("arab_left.png");
+
+    public TD_Arab(String direction){
+        this.setImage(image_right);
+        setSpeed(3);
+        initHp(100);
+        setDirection(direction);
+        setImages(image_right, image_left);
+    }
+      
 }

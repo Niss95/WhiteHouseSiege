@@ -13,24 +13,33 @@ public class Base extends Level
     private static int height = 900;
 
     private Base_Ground ground;
+    private Base_Spawner spawner;
+    
+    private GreenfootImage background = new GreenfootImage("base_background.png"); 
 
     public Base()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(width, height); 
-        this.setBackground(new GreenfootImage("base_background.png"));
+        this.setBackground(background);
+        
+        spawner = new Base_Spawner(this);
+        this.addObject(spawner, 0, 0);
         prepare();
+        
+        startRound();
     }
 
     
     
     private void prepare()
     {
-        
 
-        ground = new Base_Ground();
-        addObject(ground, width / 2, height - (ground.getImage().getHeight() / 2));
-        
-        
+        spawner.spawnGround();
+        spawner.spawnBuildings();
+    }
+    
+    private void startRound(){
+        spawner.setSpawning(true);
     }
 }
