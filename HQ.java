@@ -6,7 +6,7 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class HQ extends LevelObjects
+public class HQ extends Grounds
 {
     private GreenfootImage image = new GreenfootImage("hq.png");
 
