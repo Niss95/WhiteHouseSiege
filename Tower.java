@@ -1,22 +1,22 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Tempel here.
+ * Write a description of class Tower here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Tempel extends Visuals
+public class Tower extends Visuals
 {
-    private GreenfootImage image = new GreenfootImage("temple.png");
+     private GreenfootImage image = new GreenfootImage("tower.png");
 
-   public Tempel(){
+   public Tower(){
         this.setImage(image);
         getImage().scale(getImage().getWidth()/2, getImage().getHeight()/2);
        
     }
     /**
-     * Act - do whatever the Tempel wants to do. This method is called whenever
+     * Act - do whatever the Tower wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() 

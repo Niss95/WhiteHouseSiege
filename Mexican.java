@@ -32,10 +32,12 @@ public class Mexican extends PlatformerEnemys
         direction();
         //ab hier alle Aktionen!
         if(isTouching(Door.class)){
-            setLocation(890, 207);
+            if(getWorld() instanceof Forest){
+                setLocation(1615,346);
+            } else {
+                setLocation(1531, 215);
+            }
         }
-        
-        
         checkDeath();
     }    
     

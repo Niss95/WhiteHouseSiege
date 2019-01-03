@@ -89,7 +89,7 @@ public class Player extends Unit
             moveRight();   
             direction="right";
         }
-        if(!spacedown && "space".equals(Greenfoot.getKey()) && timer.millisElapsed() >= 900){
+        if(!spacedown && "space".equals(Greenfoot.getKey()) && timer.millisElapsed() >= 400){
             if(!shooot){
             shooot=true;
         
@@ -155,13 +155,13 @@ public class Player extends Unit
     }
     
     private void changeWorld(){
-        if(getWorld() instanceof Forest && getX() == 0){
+        if(getWorld() instanceof Base && getX() == 0){
             Greenfoot.stop();
             Greenfoot.setWorld(new Desert());
         }
-         if(getWorld() instanceof Forest && getX() == 1789){
+         if(getWorld() instanceof Base && getX() == 1789){
             Greenfoot.stop();
-            //Greenfoot.setWorld(new clearing());
+            Greenfoot.setWorld(new Forest());
         }
     }
 
