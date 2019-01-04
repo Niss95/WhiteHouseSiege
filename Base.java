@@ -8,7 +8,6 @@ import greenfoot.*;
  */
 public class Base extends Level
 {
-
     private static int width = 1800;
     private static int height = 900;
 
@@ -17,10 +16,10 @@ public class Base extends Level
     
     private GreenfootImage background = new GreenfootImage("base_background.png"); 
 
-    public Base()
+    public Base(MainMenu menu)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(width, height); 
+        super(menu, width, height); 
         this.setBackground(background);
         
         spawner = new Base_Spawner(this);

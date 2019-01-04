@@ -28,9 +28,9 @@ public class Forest extends Platformer
     private SimpleTimer timer=new SimpleTimer(); // funktioniert noch nicht    
     //----------------------------------------------
 
-    public Forest()
+    public Forest(MainMenu menu)
     {
-        super(width, height);
+        super(menu, width, height);
 
         this.setBackground(new GreenfootImage("forest_background.png"));
 
@@ -181,7 +181,7 @@ public class Forest extends Platformer
         time--;
         addEnemys();
         if (time==0) {
-            Greenfoot.setWorld(new Base());     
+            menu.switchWorldTo(MainMenu.levelTypes.BASE);
         }                
     } 
 

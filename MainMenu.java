@@ -33,9 +33,9 @@ public class MainMenu extends World
     private void prepare(){
         this.setBackground(new GreenfootImage("mainMenu_background.png"));
         
-        baseLevel = new Base();
-        desertLevel = new Desert();
-        forestLevel = new Forest();
+        baseLevel = new Base(this);
+        desertLevel = new Desert(this);
+        forestLevel = new Forest(this);
 
         addObject(new MenuButton(MenuButton.ButtonType.Start), (this.getWidth() / 2), (this.getHeight()) / 3 * 2);  //Start Button
         addObject(new MenuButton(MenuButton.ButtonType.Exit), (this.getWidth() / 2), (this.getHeight()) / 6 * 5);  //Start Button

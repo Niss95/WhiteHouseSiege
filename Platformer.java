@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class Platformer extends Level
 {
-    public Platformer(int width, int height)
+    public Platformer(MainMenu menu, int width, int height)
     {
-        super(width, height);
+        super(menu, width, height);
     }
 }

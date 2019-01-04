@@ -58,7 +58,6 @@ public class Player extends Unit
         jump();
         userinput();
         kill();
-        changeWorld();
      
         //ab hier alle Aktionen!
     }   
@@ -154,16 +153,7 @@ public class Player extends Unit
          
     }
     
-    private void changeWorld(){
-        if(getWorld() instanceof Base && getX() == 0){
-            Greenfoot.stop();
-            Greenfoot.setWorld(new Desert());
-        }
-         if(getWorld() instanceof Base && getX() == 1789){
-            Greenfoot.stop();
-            Greenfoot.setWorld(new Forest());
-        }
-    }
+    
 
     //public void setScore(double score) { this.score=score; }
     //public double getScore() { return score; }

@@ -28,9 +28,9 @@ public class Desert extends Platformer
     private SimpleTimer timer=new SimpleTimer(); // funktioniert noch nicht    
     //----------------------------------------------
     
-    public Desert()
+    public Desert(MainMenu menu)
     {
-        super(width, height);
+        super(menu, width, height);
         
         this.setBackground(new GreenfootImage("desert_background.png"));
         
@@ -190,7 +190,7 @@ public class Desert extends Platformer
         time--;
         addEnemys();
         if (time==0) {
-                Greenfoot.setWorld(new Base());     
+                menu.switchWorldTo(MainMenu.levelTypes.BASE);
             }                
         } 
          private void addRessources(){

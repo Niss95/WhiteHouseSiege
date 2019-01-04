@@ -84,13 +84,13 @@ public class Base_Spawner extends Spawners
                 timer.mark();
             }
 
-            if(enemyCounter >= amountToSpawn){
+            if(enemyCounter >= amountToSpawn && getWorld().getObjects(TowerDefenceEnemys.class).isEmpty()){
                 //System.out.println("finished spawning.");
                 spawning = false;
                 if(getRandomNumber(1,2) == 1){
-                    Greenfoot.setWorld(new Forest());
+                    ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.DESERT);
                 }else{
-                    Greenfoot.setWorld(new Desert());
+                    ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.FOREST);
                 }
             }
         }
