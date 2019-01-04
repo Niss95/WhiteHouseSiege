@@ -17,19 +17,27 @@ public abstract class TowerDefenceEnemys extends Enemys
     public void act() 
     {
         checkGravity();
-        
+
         if(checkIsWhiteHouseAlive()){
             checkRun();
             checkAttack();
 
             checkDeath();
         }
+
     }    
 
     private void checkRun(){
         if(grounded()){
-            if(this.getOneIntersectingObject(AttackableBuildings.class) == null  && this.getX() < ((getWorld().getWidth() / 2) - 10) || this.getX() > ((getWorld().getWidth() / 2) + 10)){
-                run(getDirection(), image_right, image_left);
+            if(this.getOneIntersectingObject(AttackableBuildings.class) == null){
+                if(getDirection().equals("right") && this.getX() < ((getWorld().getWidth() / 2) - 10)){
+                    run(getDirection(), image_right, image_left);
+                }
+                else if(getDirection().equals("left") && this.getX() > ((getWorld().getWidth() / 2) + 10)){
+                    run(getDirection(), image_right, image_left);
+                }
+
+                
             }
         }
     }

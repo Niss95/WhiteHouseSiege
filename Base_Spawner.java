@@ -63,26 +63,42 @@ public class Base_Spawner extends Spawners
 
     public void act() 
     {
-        
+
         if(spawning && !Engine.BackEnd._GameOver){
-            
+
             if(!marked){
                 marked = true; 
                 timer.mark();
             }
-            
+
             if((enemyCounter < amountToSpawn) && (timer.millisElapsed() >= (spawnDelay * 1000))){
                 //System.out.println("spawned enemy number : " + (enemyCounter + 1));
-                world.addObject(new TD_Mexican("right"), spawnPoint_left, spawnHeight);
+                
+                if(getRandomNumber(1,2) == 1){
+                    world.addObject(new TD_Mexican("right"), spawnPoint_left, spawnHeight);
+                }else{
+                    world.addObject(new TD_Mexican("left"), spawnPoint_right, spawnHeight);
+                }
+                                
                 enemyCounter++;
                 timer.mark();
             }
-            
+
             if(enemyCounter >= amountToSpawn){
                 //System.out.println("finished spawning.");
                 spawning = false;
+                if(getRandomNumber(1,2) == 1){
+                    Greenfoot.setWorld(new Forest());
+                }else{
+                    Greenfoot.setWorld(new Desert());
+                }
             }
         }
+    }
+
+    public int getRandomNumber(int start, int end){
+        int number=Greenfoot.getRandomNumber(end);
+        return number+start;
     }
 
     private void initBuildings(){
@@ -133,7 +149,7 @@ public class Base_Spawner extends Spawners
     public int getSpawnHeight(){
         return spawnHeight;
     }
-    
+
     public void setSpawning(boolean b){
         this.spawning = b;
     }

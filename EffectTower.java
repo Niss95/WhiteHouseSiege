@@ -9,13 +9,13 @@ import greenfoot.*;
 public class EffectTower extends Towers
 {
     private GreenfootImage image = new GreenfootImage("effectTower.png");
-    private int attackSpeedInSeconds = 6;
+    private int attackSpeedInMilliSeconds = 1500;
     private int attackDamagePerHitInHp = 50;
     
     public EffectTower(){
         this.setImage(image);
         setAttack(attackDamagePerHitInHp);
-        setAttackSpeed(attackSpeedInSeconds);
+        setAttackSpeed(attackSpeedInMilliSeconds);
     }
     
     

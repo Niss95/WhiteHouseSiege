@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ act()
+comment0.text=\n\ Act\ -\ do\ whatever\ the\ HealthBar\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment1.params=max\ current
+comment1.target=HealthBar(int,\ int)
+comment2.params=max\ current\ width\ height
+comment2.target=HealthBar(int,\ int,\ int,\ int)
+comment3.params=max
+comment3.target=HealthBar(int)
+comment4.params=
+comment4.target=void\ updateColor()
+numComments=5

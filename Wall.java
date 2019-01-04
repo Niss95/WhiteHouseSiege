@@ -9,9 +9,12 @@ import greenfoot.*;
 public class Wall extends AttackableBuildings
 {
     private GreenfootImage image = new GreenfootImage("wall.png");
+    private int initHealth = 200;
     
     public Wall(){
         this.setImage(image);
-        initHp(200);
+        initHp(initHealth);
+        
+        
     }   
 }

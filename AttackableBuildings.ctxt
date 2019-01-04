@@ -1,4 +1,10 @@
 #BlueJ class context
 comment0.params=
 comment0.target=void\ act()
-numComments=1
+comment1.params=
+comment1.target=void\ initHealthBar()
+comment2.params=x
+comment2.target=void\ hurt(int)
+comment3.params=
+comment3.target=void\ checkDeath()
+numComments=4

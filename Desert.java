@@ -190,7 +190,6 @@ public class Desert extends Platformer
         time--;
         addEnemys();
         if (time==0) {
-                Greenfoot.stop();
                 Greenfoot.setWorld(new Base());     
             }                
         } 
