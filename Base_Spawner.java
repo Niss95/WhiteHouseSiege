@@ -25,7 +25,6 @@ public class Base_Spawner extends Spawners
     private int spawnPoint_right;
     private int spawnHeight;
 
-    private boolean spawning = false;
     private boolean marked = false;
     private int spawnDelay = 2;
     private int roundNumber = 1;
@@ -35,6 +34,7 @@ public class Base_Spawner extends Spawners
 
     //Ect:
     private Base_Ground ground = new Base_Ground();
+    private Player player;
 
     //Buildings:
     public WhiteHouse wh;
@@ -64,13 +64,14 @@ public class Base_Spawner extends Spawners
     public void act() 
     {
 
-        if(spawning && !Engine.GameValues._GameOver){
-
+        if(Engine.GameValues._RoundStarted && !Engine.GameValues._GameOver){
+            
+            if(player == null){spawnPlayer();}
             spawn();
 
             if(enemyCounter >= amountToSpawn && getWorld().getObjects(TowerDefenceEnemys.class).isEmpty()){
                 //System.out.println("finished spawning.");
-                spawning = false;
+                Engine.GameValues._RoundStarted = false;
                 enemyTypeToSpawn = null;
                 if(getRandomNumber(1,2) == 1){
                     ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.DESERT);
@@ -171,7 +172,7 @@ public class Base_Spawner extends Spawners
     public void spawnBuildings(){
 
         //WhiteHouse:
-        world.addObject(wh, midX, world.getHeight() - ground.getImage().getHeight() - (wh.getImage().getHeight() / 2) + offset_buildingHeight );
+        world.addObject(wh, midX, world.getHeight() - ground.getImage().getHeight() - (wh.getImage().getHeight() / 2) + 1 );
 
         //Tower:
         world.addObject(etLeft, midX - ((wh.getImage().getWidth() / 2) + offset_et), world.getHeight() - ground.getImage().getHeight() - (etLeft.getImage().getHeight() / 2) );
@@ -189,6 +190,11 @@ public class Base_Spawner extends Spawners
     public void spawnGround(){
         world.addObject(ground, world.getWidth() / 2, world.getHeight() - (ground.getImage().getHeight() / 2));
     }
+    
+    public void spawnPlayer(){
+        player = new Player();
+        world.addObject(player, world.getWidth() / 2, world.getHeight() / 2);
+    }
 
     //Getter & Setter:
 
@@ -205,7 +211,7 @@ public class Base_Spawner extends Spawners
     }
 
     public void setSpawning(boolean b){
-        this.spawning = b;
+        Engine.GameValues._RoundStarted = b;
     }
 
 }

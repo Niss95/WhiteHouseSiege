@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class Base_Ground extends Grounds
 {
-    private GreenfootImage image = new GreenfootImage("base_ground.png");
+    private GreenfootImage image = Engine.ImageLoader._image_Base_Ground;
     
     public Base_Ground(){
         this.setImage(image);

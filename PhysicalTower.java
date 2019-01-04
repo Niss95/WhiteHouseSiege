@@ -8,7 +8,8 @@ import greenfoot.*;
  */
 public class PhysicalTower extends Towers
 {
-    private GreenfootImage image = new GreenfootImage("physicalTower.png");
+    private GreenfootImage image = Engine.ImageLoader._image_PhysicalTower;
+    
     private int attackSpeedInMilliSeconds = 2000;
     private int attackDamagePerHitInHp = 50;
     

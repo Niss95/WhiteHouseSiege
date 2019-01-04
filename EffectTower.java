@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class EffectTower extends Towers
 {
-    private GreenfootImage image = new GreenfootImage("effectTower.png");
+    private GreenfootImage image = Engine.ImageLoader._image_EffectTower;
     private int attackSpeedInMilliSeconds = 1500;
     private int attackDamagePerHitInHp = 50;
     

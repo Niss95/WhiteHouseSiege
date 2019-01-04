@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class Mexican extends PlatformerEnemys
 {
-    private GreenfootImage image_right = new GreenfootImage("mexican_right.png");
-    private GreenfootImage image_left = new GreenfootImage("mexican_left.png");
+    private GreenfootImage image_right = Engine.ImageLoader._image_right_Mexican;
+    private GreenfootImage image_left = Engine.ImageLoader._image_left_Mexican;
 
     private int initHealth = 100;
     private int ressourceValue = 50;
@@ -21,11 +21,11 @@ public class Mexican extends PlatformerEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.EnemyValues._MexicanAttackSpeed);
-        setAttack(Engine.EnemyValues._MexicanAttackDamage);
-        setAttackSpeed(Engine.EnemyValues._MexicanSpeed);
-        initHp(Engine.EnemyValues._MexicanLife);
-        setResValue(Engine.EnemyValues._MexicanRes);
+        setSpeed(Engine.ActorValues._MexicanAttackSpeed);
+        setAttack(Engine.ActorValues._MexicanAttackDamage);
+        setAttackSpeed(Engine.ActorValues._MexicanSpeed);
+        initHp(Engine.ActorValues._MexicanLife);
+        setResValue(Engine.ActorValues._MexicanRes);
     }
     /**
      * Act - do whatever the Mexican wants to do. This method is called whenever

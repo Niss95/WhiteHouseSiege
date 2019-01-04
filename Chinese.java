@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class Chinese extends PlatformerEnemys
 {
-    private GreenfootImage image_right = new GreenfootImage("chinese_right.png");
-    private GreenfootImage image_left = new GreenfootImage("chinese_left.png");
+    private GreenfootImage image_right = Engine.ImageLoader._image_right_Chinese;
+    private GreenfootImage image_left = Engine.ImageLoader._image_left_Chinese;
     
     private int initHealth = 100;
     private int ressourceValue = 50;
@@ -21,11 +21,11 @@ public class Chinese extends PlatformerEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.EnemyValues._ChineseAttackSpeed);
-        setAttack(Engine.EnemyValues._ChineseAttackDamage);
-        setAttackSpeed(Engine.EnemyValues._ChineseSpeed);
-        initHp(Engine.EnemyValues._ChineseLife);
-        setResValue(Engine.EnemyValues._ChineseRes);
+        setSpeed(Engine.ActorValues._ChineseAttackSpeed);
+        setAttack(Engine.ActorValues._ChineseAttackDamage);
+        setAttackSpeed(Engine.ActorValues._ChineseSpeed);
+        initHp(Engine.ActorValues._ChineseLife);
+        setResValue(Engine.ActorValues._ChineseRes);
     }
     
     /**

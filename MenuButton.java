@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class MenuButton extends Buttons
 {   
-    private GreenfootImage startButton = new GreenfootImage("startButton.png");
-    private GreenfootImage exitButton = new GreenfootImage("exitButton.png");
+    public static GreenfootImage startButton = Engine.ImageLoader._startButton;
+    public static GreenfootImage exitButton = Engine.ImageLoader._exitButton;
     
     private ButtonType type;
     

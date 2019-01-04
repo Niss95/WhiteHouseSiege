@@ -3,46 +3,43 @@ import greenfoot.*;
 /**
  * Write a description of class Player here.
  * 
- * @author (Dennis Sellemann)
+ * @author (Dennis Sellemann, Sven)
  * @version (a version number or a date)
  */
 public class Player extends Unit
 {
-    private GreenfootImage image_right = new GreenfootImage("player_right.png");
-    private GreenfootImage image_left = new GreenfootImage("player_left.png");
+    private GreenfootImage image_right = Engine.ImageLoader._image_right_Player;
+    private GreenfootImage image_left = Engine.ImageLoader._image_left_Player;
 
-    
     // änderbar
     private int jumpHight = 150;    //Wie hoch er in pixeln springen soll
     private int jumpSpeed = getForce();  // Wie schnell er springen soll (aktuell gleichgesetzt mit der Gravitation)
     private Desert desert;
-    
+
     //Tastenbelegung:
     private String right = "right";
     private String left = "left";
     private String up = "up";
-    
+
     //Nicht ändern!!!
     private int currentJump = 0;    
     private boolean jumping = false;
     private boolean spacedown = false;
-    
+
     private int coins=0;
     private int barrel=0;
     private int steel=0;
-    
+
     private SimpleTimer timer=new SimpleTimer();
     private String direction="right";
     private boolean shooot=false;
-     
-    
+
     // standard Konstruktor
     public Player(){
         this.setImage(image_right);
         setHp(100);
         setSpeed(10);
 
-    
     }
 
     /**
@@ -57,10 +54,11 @@ public class Player extends Unit
         ShowScore();
         jump();
         userinput();
-        kill();
-     
+        checkHit();
+        checkDeath();
         //ab hier alle Aktionen!
     }   
+
     private void ShowScore(){
         if(isTouching(Barrels.class)){
             barrel++;
@@ -76,25 +74,26 @@ public class Player extends Unit
         }
         getWorld().showText(coins + "     " + barrel + "      " + steel, 1697, 20);
     }
+
     private void userinput(){
         boolean rightb=false;
         if(Greenfoot.isKeyDown(left)){
             this.setImage(image_left);
             moveLeft();
-            direction="left";
+            direction = "left";
         }
         if(Greenfoot.isKeyDown(right)){
             this.setImage(image_right);
             moveRight();   
-            direction="right";
+            direction= "right";
         }
-        if(!spacedown && "space".equals(Greenfoot.getKey()) && timer.millisElapsed() >= 400){
+        if(!spacedown && "space".equals(Greenfoot.getKey()) && timer.millisElapsed() >= Engine.ActorValues._ShootInterval){
             if(!shooot){
-            shooot=true;
-        
-        }
+                shooot=true;
+
+            }
             spacedown=true;
-            shoot(direction);
+            shoot();
         }
         if(spacedown && !"space".equals(Greenfoot.getKey())){
             spacedown=false;
@@ -105,19 +104,20 @@ public class Player extends Unit
             }
         }
     }
-    private void shoot(String directione){
-         Bullet bullet = new Bullet(directione);
-         if (directione.equals("right")){    
-             getWorld().addObject(bullet, getX()+48, getY()-2);
-            } else if(directione.equals("left")){
-             getWorld().addObject(bullet, getX()-48, getY()-2);               
-                
-            }
 
-         bullet.setRotation(getRotation());
-         timer.mark();
-        }   
-        
+    private void shoot(){
+        Bullet bullet = new Bullet(direction);
+        if (direction.equals("right")){    
+            getWorld().addObject(bullet, getX()+48, getY()-2);
+        } else if(direction.equals("left")){
+            getWorld().addObject(bullet, getX()-48, getY()-2);               
+
+        }
+
+        bullet.setRotation(getRotation());
+        timer.mark();
+    }   
+
     private void jump(){
         if(jumping == true){
             if(currentJump <= jumpHight){
@@ -136,24 +136,32 @@ public class Player extends Unit
             }
         }
     }
-    
-    private void kill(){
+
+    private void checkHit(){
         if(isTouching(HQ.class) == false){
-            
-            if (isTouching(Mexican.class) || isTouching(Chinese.class) || isTouching(Arab.class)){
-                //Greenfoot.stop();
-                //Greenfoot.setWorld(new desert());
+
+            if (isTouching(Enemys.class)){
+                hurt(50);
+            }
+        }
+    }
+
+    @Override
+    public void checkDeath(){
+        if(getHp() == 0){
+            if(this.getWorld() instanceof Platformer){
                 coins=0;
                 barrel=0;
                 steel=0;
-                setLocation(29, 577);
+                setHp(100);
+                setLocation(60, 725);
             }
-            
+            else{
+                setHp(100);
+                setLocation(getWorld().getWidth() / 2, getWorld().getHeight() / 2);
+            }
         }
-         
     }
-    
-    
 
     //public void setScore(double score) { this.score=score; }
     //public double getScore() { return score; }

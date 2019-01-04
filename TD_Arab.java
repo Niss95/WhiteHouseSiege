@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class TD_Arab extends TowerDefenceEnemys
 {
-    private GreenfootImage image_right = new GreenfootImage("arab_right.png");
-    private GreenfootImage image_left = new GreenfootImage("arab_left.png");
+    private GreenfootImage image_right = Engine.ImageLoader._image_right_Arab;
+    private GreenfootImage image_left = Engine.ImageLoader._image_left_Arab;
     
     public TD_Arab(String direction){
         setDirection(direction);
@@ -18,11 +18,11 @@ public class TD_Arab extends TowerDefenceEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.EnemyValues._ArabAttackSpeed);
-        setAttack(Engine.EnemyValues._ArabAttackDamage);
-        setAttackSpeed(Engine.EnemyValues._ArabSpeed);
-        initHp(Engine.EnemyValues._ArabLife);
-        setResValue(Engine.EnemyValues._ArabRes);        
+        setSpeed(Engine.ActorValues._ArabAttackSpeed);
+        setAttack(Engine.ActorValues._ArabAttackDamage);
+        setAttackSpeed(Engine.ActorValues._ArabSpeed);
+        initHp(Engine.ActorValues._ArabLife);
+        setResValue(Engine.ActorValues._ArabRes);        
     }
       
 }

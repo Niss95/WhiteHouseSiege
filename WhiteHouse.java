@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public class WhiteHouse extends AttackableBuildings
 {
-    private GreenfootImage image = new GreenfootImage("WhiteHouse.png");
+    private GreenfootImage image = Engine.ImageLoader._image_WhiteHouse;
 
     public WhiteHouse(){
         this.setImage(image);

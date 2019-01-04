@@ -31,7 +31,7 @@ public class MainMenu extends World
     }
     
     private void prepare(){
-        this.setBackground(new GreenfootImage("mainMenu_background.png"));
+        this.setBackground(Engine.ImageLoader._image_MainMenu_BackGround);
         
         baseLevel = new Base(this);
         desertLevel = new Desert(this);
@@ -43,6 +43,7 @@ public class MainMenu extends World
     
     public void startPressed(){
         Engine.GameValues._GameOver = false;
+        Engine.GameValues._RoundStarted = true;
         switchWorldTo(levelTypes.BASE);
     }
     

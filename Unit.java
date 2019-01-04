@@ -37,7 +37,6 @@ abstract public class Unit extends Actor
     public boolean grounded(){
         if(this.getOneIntersectingObject(Grounds.class) != null){
             List<Grounds> grounds = this.getIntersectingObjects(Grounds.class);
-            
 
             for(Grounds g : grounds){
                 if(

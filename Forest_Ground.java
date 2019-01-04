@@ -8,7 +8,9 @@ import greenfoot.*;
  */
 public class Forest_Ground extends Grounds
 {
+    private GreenfootImage image = Engine.ImageLoader._image_Forest_Ground;
+    
     public Forest_Ground(){
-        this.setImage(new GreenfootImage("FOORESTground.png"));
+        this.setImage(image);
     }
 }

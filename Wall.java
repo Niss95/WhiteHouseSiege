@@ -8,7 +8,8 @@ import greenfoot.*;
  */
 public class Wall extends AttackableBuildings
 {
-    private GreenfootImage image = new GreenfootImage("wall.png");
+    private GreenfootImage image = Engine.ImageLoader._image_Wall;
+    
     private int initHealth = 200;
     
     public Wall(){

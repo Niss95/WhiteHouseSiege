@@ -1,6 +1,7 @@
 import greenfoot.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Color;
 
 /**
  * Write a description of class Towers here.
@@ -79,6 +80,7 @@ public abstract class Towers extends Buildings
         private int timeToLiveInMilliSeconds = 250;
 
         public Beam(int fromX, int fromY, int toX, int toY){
+            image.setColor(Color.RED);
             image.drawLine(fromX, fromY, toX, toY);
             this.setImage(image);
             lifeTimer.mark();
