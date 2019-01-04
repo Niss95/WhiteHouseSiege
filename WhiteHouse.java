@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class WhiteHouse here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann)
  * @version (a version number or a date)
  */
 public class WhiteHouse extends AttackableBuildings
@@ -22,7 +22,7 @@ public class WhiteHouse extends AttackableBuildings
                 getWorld().removeObject(bar);
             }
             getWorld().removeObject(this);
-            Engine.BackEnd._GameOver = true;
+            Engine.GameValues._GameOver = true;
         }
     }
 }

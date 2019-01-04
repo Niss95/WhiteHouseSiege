@@ -84,17 +84,17 @@ public class Desert extends Platformer
         addObject(brick38, 695, 547);
         Brick3 brick39 = new Brick3();
         addObject(brick39, 915, 649);
-        Brick2 brick28 = new Brick2();
+        BrickMovingWhenTouched brick28 = new BrickMovingWhenTouched();
         addObject(brick28, 1498, 285);
-        Brick2 brick29 = new Brick2();
+        BrickMovingWhenTouched brick29 = new BrickMovingWhenTouched();
         addObject(brick29, 1607, 292);
         brick29.setLocation(1582, 285);
-        Brick2 brick210 = new Brick2();
+        BrickMovingWhenTouched brick210 = new BrickMovingWhenTouched();
         addObject(brick210, 1728, 326);
         brick210.setLocation(1732, 348);
-        Brick2 brick211 = new Brick2();
+        BrickMovingWhenTouched brick211 = new BrickMovingWhenTouched();
         addObject(brick211, 1347, 401);
-        Brick2 brick212 = new Brick2();
+        BrickMovingWhenTouched brick212 = new BrickMovingWhenTouched();
         addObject(brick212, 1594, 624);
         brick212.setLocation(1576, 624);
 
@@ -190,7 +190,7 @@ public class Desert extends Platformer
         time--;
         addEnemys();
         if (time==0) {
-                menu.switchWorldTo(MainMenu.levelTypes.BASE);
+                menu.switchWorldTo(MainMenu.levelTypes.BASE);   
             }                
         } 
          private void addRessources(){
@@ -205,7 +205,7 @@ public class Desert extends Platformer
             } else if( c > 10 && c <= 20){
                 addObject(new Brick3(), b, h);
             } else{
-                addObject(new Brick2(), b, h);
+                addObject(new BrickMovingWhenTouched(), b, h);
             }
             if(j==1){
             addObject(new Barrel2(), b -20, h - 35);

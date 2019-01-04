@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Clouds here.
  * 
- * @author (your name) 
+ * @author (Sven)
  * @version (a version number or a date)
  */
 public abstract class Clouds extends Visuals

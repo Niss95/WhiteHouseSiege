@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Bullet here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann, Sven)
  * @version (a version number or a date)
  */
 public class Bullet extends Unit

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Clound2 here.
  * 
- * @author (your name) 
+ * @author (Sven)
  * @version (a version number or a date)
  */
 public class Cloud2 extends Clouds

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Barrel1 here.
  * 
- * @author (your name) 
+ * @author (Sven) 
  * @version (a version number or a date)
  */
 public class Barrel1 extends Barrels

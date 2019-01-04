@@ -3,19 +3,29 @@ import greenfoot.*;
 /**
  * Write a description of class Chinese here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann, Sven) 
  * @version (a version number or a date)
  */
 public class Chinese extends PlatformerEnemys
 {
     private GreenfootImage image_right = new GreenfootImage("chinese_right.png");
     private GreenfootImage image_left = new GreenfootImage("chinese_left.png");
+    
+    private int initHealth = 100;
+    private int ressourceValue = 50;
 
     public Chinese(String direction){
-        this.setImage(image_right);
-        setSpeed(4);
-        initHp(50);
         setDirection(direction);
+        
+        setImage(image_right);
+        setImages(image_right, image_left);
+        
+        
+        setSpeed(Engine.EnemyValues._ChineseAttackSpeed);
+        setAttack(Engine.EnemyValues._ChineseAttackDamage);
+        setAttackSpeed(Engine.EnemyValues._ChineseSpeed);
+        initHp(Engine.EnemyValues._ChineseLife);
+        setResValue(Engine.EnemyValues._ChineseRes);
     }
     
     /**

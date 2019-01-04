@@ -1,2 +1,4 @@
 #BlueJ class context
-numComments=0
+comment0.params=image_right\ image_left
+comment0.target=void\ setImages(greenfoot.GreenfootImage,\ greenfoot.GreenfootImage)
+numComments=1

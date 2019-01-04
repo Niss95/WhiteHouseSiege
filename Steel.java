@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Steel here.
  * 
- * @author (your name) 
+ * @author (Sven) 
  * @version (a version number or a date)
  */
 public class Steel extends Collectables

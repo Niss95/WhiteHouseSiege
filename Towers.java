@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Write a description of class Towers here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann)
  * @version (a version number or a date)
  */
 public abstract class Towers extends Buildings
@@ -22,7 +22,7 @@ public abstract class Towers extends Buildings
     public void act() 
     {
         if(_attacking){
-        if(!Engine.BackEnd._GameOver){
+        if(!Engine.GameValues._GameOver){
 
             checkAttack();
         }  
@@ -37,7 +37,7 @@ public abstract class Towers extends Buildings
         if(attackTimer.millisElapsed() >= (this.getAttackSpeed())){
             for(int i = 0; i < attacableOpponents; i++){
                 if( i < targets.size()){
-                    getWorld().addObject(new Beam(getX(), getY() + (getImage().getHeight() / 2) - (getImage().getHeight() / 4 * 3), targets.get(i).getX(), targets.get(i).getY()), (Engine.BackEnd._Width / 2), (Engine.BackEnd._Height / 2));
+                    getWorld().addObject(new Beam(getX(), getY() + (getImage().getHeight() / 2) - (getImage().getHeight() / 4 * 3), targets.get(i).getX(), targets.get(i).getY()), (Engine.Config._Width / 2), (Engine.Config._Height / 2));
                     targets.get(i).hurt(this.getAttack());
                 }
 
@@ -75,7 +75,7 @@ public abstract class Towers extends Buildings
     private class Beam extends Actor{
 
         private SimpleTimer lifeTimer = new SimpleTimer();
-        private GreenfootImage image = new GreenfootImage(Engine.BackEnd._Width, Engine.BackEnd._Height);
+        private GreenfootImage image = new GreenfootImage(Engine.Config._Width, Engine.Config._Height);
         private int timeToLiveInMilliSeconds = 250;
 
         public Beam(int fromX, int fromY, int toX, int toY){

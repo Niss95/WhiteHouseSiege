@@ -1,15 +1,16 @@
 import greenfoot.*;
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  * Write a description of class Unit here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann) 
  * @version (a version number or a date)
  */
 abstract public class Unit extends Actor
 {
     private int force = 10;
-    
+
     private int speed = 0;
     private String direction = "";
 
@@ -18,6 +19,8 @@ abstract public class Unit extends Actor
 
     private int attack = 1;
     private int attackSpeed = 1;
+
+    private int resValue = 0;
 
     public void gravity(){
         this.setLocation(this.getX(), this.getY() + force);
@@ -33,7 +36,18 @@ abstract public class Unit extends Actor
 
     public boolean grounded(){
         if(this.getOneIntersectingObject(Grounds.class) != null){
-            return true;
+            List<Grounds> grounds = this.getIntersectingObjects(Grounds.class);
+            
+
+            for(Grounds g : grounds){
+                if(
+                (this.getY() + (this.getImage().getHeight() / 2)) >= (g.getY() - (g.getImage().getHeight() / 2)) &&
+                (this.getY() + (this.getImage().getHeight() / 2)) <= (g.getY())
+                ){
+                    return true;  
+                }
+
+            }
         }
         return false;
     }
@@ -44,18 +58,17 @@ abstract public class Unit extends Actor
         }
         else{setHp((getHp() - x));}
     }
-    
+
     public void checkDeath(){
         if(getHp() == 0){
             getWorld().removeObject(this);
         }
     }
 
-    
     public boolean checkIsWhiteHouseAlive(){
         return !getWorld().getObjects(WhiteHouse.class).isEmpty();
     }
-    
+
     public void loc(int x, int y){this.setLocation(x,y);}
 
     // Getter / Setter -------------------------------------------------------------------------------------------------------------------------------------
@@ -65,6 +78,14 @@ abstract public class Unit extends Actor
 
     public int getSpeed(){
         return this.speed;
+    }
+
+    public void setResValue(int value){
+        this.resValue = value;
+    }
+
+    public int getResValue(){
+        return this.resValue;
     }
 
     public void setDirection(String direction){
@@ -99,7 +120,7 @@ abstract public class Unit extends Actor
     public void setAttack(int attack){
         this.attack = attack;
     }
-    
+
     public int getAttackSpeed(){
         return attackSpeed;
     }

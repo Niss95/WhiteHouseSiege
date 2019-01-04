@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class woodenFence here.
  * 
- * @author (your name) 
+  * @author (Sven)
  * @version (a version number or a date)
  */
 public class WoodenFence extends Visuals

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Player here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann)
  * @version (a version number or a date)
  */
 public class Player extends Unit

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class brickmove here.
  * 
- * @author (your name) 
+ * @author (Sven) 
  * @version (a version number or a date)
  */
 public class BrickMoving extends Platforms
@@ -14,6 +14,7 @@ public class BrickMoving extends Platforms
         this.setImage(image);
         getImage().scale(getImage().getWidth()*2, getImage().getHeight());
     }
+    
     /**
      * Act - do whatever the brickmove wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

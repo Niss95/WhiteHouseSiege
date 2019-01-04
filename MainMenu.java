@@ -5,7 +5,7 @@ import greenfoot.*;
  * 
  * Von hier aus wird alles weitere gestartet.
  * 
- * @author Dennis Sellemann
+ * @author (Dennis Sellemann)
  */
 public class MainMenu extends World
 {
@@ -42,7 +42,7 @@ public class MainMenu extends World
     }
     
     public void startPressed(){
-        Engine.BackEnd._GameOver = false;
+        Engine.GameValues._GameOver = false;
         switchWorldTo(levelTypes.BASE);
     }
     

@@ -3,14 +3,11 @@ import greenfoot.*;
 /**
  * Write a description of class Base here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann) 
  * @version (a version number or a date)
  */
 public class Base extends Level
 {
-    private static int width = 1800;
-    private static int height = 900;
-
     private Base_Ground ground;
     private Base_Spawner spawner;
     
@@ -18,8 +15,7 @@ public class Base extends Level
 
     public Base(MainMenu menu)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(menu, width, height); 
+        super(menu, Engine.Config._Width, Engine.Config._Height); 
         this.setBackground(background);
         
         spawner = new Base_Spawner(this);

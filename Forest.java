@@ -3,15 +3,12 @@ import greenfoot.*;
 /**
  * Write a description of class Desert here.
  * 
- * @author (your name) 
+ * @author (Sven ) 
  * @version (a version number or a date)
  */
 public class Forest extends Platformer
 {
-    private static int width = 1800;
-    private static int height = 900;
-
-    private Base_Ground ground;
+    private Forest_Ground fosg;
 
     //----------------------------------------------
     int max_Mexicans= 4;
@@ -30,7 +27,7 @@ public class Forest extends Platformer
 
     public Forest(MainMenu menu)
     {
-        super(menu, width, height);
+        super(menu, Engine.Config._Width, Engine.Config._Height); 
 
         this.setBackground(new GreenfootImage("forest_background.png"));
 
@@ -39,7 +36,7 @@ public class Forest extends Platformer
 
     private void prepare()
     {
-        Forest_Ground fosg = new Forest_Ground();
+        fosg = new Forest_Ground();
         addObject(fosg,942, 875);
         spawnObjects();
         addRessources();
@@ -83,17 +80,17 @@ public class Forest extends Platformer
         addObject(brick38, 695, 547);
         Brick3 brick39 = new Brick3();
         addObject(brick39, 915, 649);
-        Brick2 brick28 = new Brick2();
+        BrickMovingWhenTouched brick28 = new BrickMovingWhenTouched();
         addObject(brick28, 1418, 455);
-        Brick2 brick29 = new Brick2();
+        BrickMovingWhenTouched brick29 = new BrickMovingWhenTouched();
         addObject(brick29, 1648, 408);
         brick29.setLocation(1668,408);
-        Brick2 brick210 = new Brick2();
+        BrickMovingWhenTouched brick210 = new BrickMovingWhenTouched();
         addObject(brick210, 1728, 526);
 
-        Brick2 brick211 = new Brick2();
+        BrickMovingWhenTouched brick211 = new BrickMovingWhenTouched();
         addObject(brick211, 1637, 409);
-        Brick2 brick212 = new Brick2();
+        BrickMovingWhenTouched brick212 = new BrickMovingWhenTouched();
         addObject(brick212, 1594, 409);
 
         Brick3 brick312 = new Brick3();
@@ -197,7 +194,7 @@ public class Forest extends Platformer
                 } else if( c > 10 && c <= 20){
                     addObject(new Brick3(), b, h);
                 } else{
-                    addObject(new Brick2(), b, h);
+                    addObject(new BrickMovingWhenTouched(), b, h);
                 }
                 if(j==1){
                     addObject(new Barrel2(), b -20, h - 35);

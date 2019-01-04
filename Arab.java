@@ -3,20 +3,30 @@ import greenfoot.*;
 /**
  * Write a description of class Arab here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann, Sven) 
  * @version (a version number or a date)
  */
 public class Arab extends PlatformerEnemys
 {
     private GreenfootImage image_right = new GreenfootImage("arab_right.png");
     private GreenfootImage image_left = new GreenfootImage("arab_left.png");
-
+    
+    private int initHealth = 100;
+    private int ressourceValue = 50;
     
     public Arab(String direction){
-        this.setImage(image_right);
-        setSpeed(2);
-        initHp(200);
+        
         setDirection(direction);
+        
+        setImage(image_right);
+        setImages(image_right, image_left);
+        
+        
+        setSpeed(Engine.EnemyValues._ArabAttackSpeed);
+        setAttack(Engine.EnemyValues._ArabAttackDamage);
+        setAttackSpeed(Engine.EnemyValues._ArabSpeed);
+        initHp(Engine.EnemyValues._ArabLife);
+        setResValue(Engine.EnemyValues._ArabRes);
     }
     
     /**

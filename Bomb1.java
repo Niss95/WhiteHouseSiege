@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Bomb1 here.
  * 
- * @author (your name) 
+ * @author (Sven)
  * @version (a version number or a date)
  */
 public class Bomb1 extends Airplane
@@ -15,12 +15,4 @@ public class Bomb1 extends Airplane
         getImage().scale(getImage().getWidth()/7, getImage().getHeight()/8);
        
     }
-    /**
-     * Act - do whatever the Bomb1 wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-
-    }    
 }

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Tempel_China here.
  * 
- * @author (your name) 
+ * @author (Sven)
  * @version (a version number or a date)
  */
 public class Tempel_China extends Visuals
@@ -15,12 +15,5 @@ public class Tempel_China extends Visuals
         getImage().scale(getImage().getWidth()/2, getImage().getHeight()/2);
        
     }
-    /**
-     * Act - do whatever the Tempel_China wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+   
 }

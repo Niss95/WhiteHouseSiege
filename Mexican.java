@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Mexican here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann, Sven)
  * @version (a version number or a date)
  */
 public class Mexican extends PlatformerEnemys
@@ -11,11 +11,21 @@ public class Mexican extends PlatformerEnemys
     private GreenfootImage image_right = new GreenfootImage("mexican_right.png");
     private GreenfootImage image_left = new GreenfootImage("mexican_left.png");
 
+    private int initHealth = 100;
+    private int ressourceValue = 50;
+    
     public Mexican(String direction){
-        this.setImage(image_right);
-        setSpeed(3);
-        initHp(100);
         setDirection(direction);
+        
+        setImage(image_right);
+        setImages(image_right, image_left);
+        
+        
+        setSpeed(Engine.EnemyValues._MexicanAttackSpeed);
+        setAttack(Engine.EnemyValues._MexicanAttackDamage);
+        setAttackSpeed(Engine.EnemyValues._MexicanSpeed);
+        initHp(Engine.EnemyValues._MexicanLife);
+        setResValue(Engine.EnemyValues._MexicanRes);
     }
     /**
      * Act - do whatever the Mexican wants to do. This method is called whenever

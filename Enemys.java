@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Enemy here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann) 
  * @version (a version number or a date)
  */
 abstract public class Enemys extends Unit
@@ -29,4 +29,15 @@ abstract public class Enemys extends Unit
         }
     }
     
+    @Override
+    public void checkDeath(){
+        if(getHp() == 0){
+            changeRes();
+            getWorld().removeObject(this);
+        }
+    }
+
+    public void changeRes(){
+        Engine.GameValues._Res += getResValue();
+    }
 }

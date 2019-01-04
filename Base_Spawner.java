@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * Write a description of class Base_Spawner here.
  * 
- * @author (your name) 
+ * @author (Dennis Sellemann)
  * @version (a version number or a date)
  */
 public class Base_Spawner extends Spawners
@@ -29,7 +29,7 @@ public class Base_Spawner extends Spawners
     private boolean marked = false;
     private int spawnDelay = 2;
     private int roundNumber = 1;
-    private EnemyTypes enemyTypeToSpawn = EnemyTypes.MEXICANS;
+    private EnemyTypes enemyTypeToSpawn;
     private int amountToSpawn = 10;
     private int enemyCounter = 0;
 
@@ -64,35 +64,89 @@ public class Base_Spawner extends Spawners
     public void act() 
     {
 
-        if(spawning && !Engine.BackEnd._GameOver){
+        if(spawning && !Engine.GameValues._GameOver){
 
-            if(!marked){
-                marked = true; 
-                timer.mark();
-            }
-
-            if((enemyCounter < amountToSpawn) && (timer.millisElapsed() >= (spawnDelay * 1000))){
-                //System.out.println("spawned enemy number : " + (enemyCounter + 1));
-                
-                if(getRandomNumber(1,2) == 1){
-                    world.addObject(new TD_Mexican("right"), spawnPoint_left, spawnHeight);
-                }else{
-                    world.addObject(new TD_Mexican("left"), spawnPoint_right, spawnHeight);
-                }
-                                
-                enemyCounter++;
-                timer.mark();
-            }
+            spawn();
 
             if(enemyCounter >= amountToSpawn && getWorld().getObjects(TowerDefenceEnemys.class).isEmpty()){
                 //System.out.println("finished spawning.");
                 spawning = false;
+                enemyTypeToSpawn = null;
                 if(getRandomNumber(1,2) == 1){
                     ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.DESERT);
                 }else{
                     ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.FOREST);
                 }
             }
+        }
+    }
+
+    private void decideEnemyType(){
+        int random = getRandomNumber(1,3);
+        if(random == 1){
+            enemyTypeToSpawn = EnemyTypes.ARABS;
+            amountToSpawn = amountToSpawn / 2;
+        }else if(random == 2){
+            enemyTypeToSpawn = EnemyTypes.CHINESE;
+        }
+        else if(random == 3){
+            enemyTypeToSpawn = EnemyTypes.MEXICANS;
+        }
+    }
+
+    private void spawn(){
+
+        if(enemyTypeToSpawn == null){
+            decideEnemyType();
+        }
+
+        if(!marked){
+            marked = true; 
+            timer.mark();
+        }
+
+        if((enemyCounter < amountToSpawn) && (timer.millisElapsed() >= (spawnDelay * 1000))){
+            //System.out.println("spawned enemy number : " + (enemyCounter + 1));
+
+            switch (enemyTypeToSpawn){
+                case ARABS:
+                    spawnArabs();
+                    break;
+                case CHINESE:
+                    spawnChinese();
+                    break;
+                case MEXICANS:
+                    spawnMexicans();
+                    break;
+                
+            }
+
+            enemyCounter++;
+            timer.mark();
+        }
+    }
+
+    private void spawnArabs(){
+        if(getRandomNumber(1,2) == 1){
+            world.addObject(new TD_Arab("right"), spawnPoint_left, spawnHeight);
+        }else{
+            world.addObject(new TD_Arab("left"), spawnPoint_right, spawnHeight);
+        }
+    }
+
+    private void spawnChinese(){
+        if(getRandomNumber(1,2) == 1){
+            world.addObject(new TD_Chinese("right"), spawnPoint_left, spawnHeight);
+        }else{
+            world.addObject(new TD_Chinese("left"), spawnPoint_right, spawnHeight);
+        }
+    }
+
+    private void spawnMexicans(){        
+        if(getRandomNumber(1,2) == 1){
+            world.addObject(new TD_Mexican("right"), spawnPoint_left, spawnHeight);
+        }else{
+            world.addObject(new TD_Mexican("left"), spawnPoint_right, spawnHeight);
         }
     }
 
