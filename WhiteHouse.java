@@ -13,6 +13,7 @@ public class WhiteHouse extends AttackableBuildings
     public WhiteHouse(){
         this.setImage(image);
         initHp(1000);
+        setIntact(true);
     }  
 
     @Override
@@ -21,6 +22,8 @@ public class WhiteHouse extends AttackableBuildings
             if(bar != null){
                 getWorld().removeObject(bar);
             }
+
+            setIntact(false);
             getWorld().removeObject(this);
             Engine.GameValues._GameOver = true;
         }

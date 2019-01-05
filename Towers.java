@@ -12,34 +12,48 @@ import java.awt.Color;
 public abstract class Towers extends Buildings
 {
     private SimpleTimer attackTimer = new SimpleTimer();
+    public RangeDisplay rangeDisplay;
+
+    private Color rangeColor = Color.RED;
 
     private List<TowerDefenceEnemys> targets = new ArrayList<TowerDefenceEnemys>();
     private int range = 0;
     private int attacableOpponents = 1;//how many simultaneously attackable opponents
-    
-    
-    private boolean _attacking = true;
+
+    private boolean _attacking = true;  //just for debugging
+
+    private boolean initialized = false;
 
     public void act() 
     {
         if(_attacking){
-        if(!Engine.GameValues._GameOver){
-
-            checkAttack();
-        }  
-    }
+            if(!Engine.GameValues._GameOver){
+                init();
+                checkAttack();
+            }  
+        }
     } 
 
+    public void init(){
+        if(!initialized){
+            calcRange();
+            initialized = true;
+        }
+    }
+
     public void checkAttack(){
-        if(range == 0){calcRange();}
-
-        targets = sortByNearestToWhiteHouse(getObjectsInRange(range, TowerDefenceEnemys.class));
-
         if(attackTimer.millisElapsed() >= (this.getAttackSpeed())){
+            calcRange();
+
+            targets = sortByNearestToWhiteHouse(getObjectsInRange(range, TowerDefenceEnemys.class));
+
             for(int i = 0; i < attacableOpponents; i++){
                 if( i < targets.size()){
                     getWorld().addObject(new Beam(getX(), getY() + (getImage().getHeight() / 2) - (getImage().getHeight() / 4 * 3), targets.get(i).getX(), targets.get(i).getY()), (Engine.Config._Width / 2), (Engine.Config._Height / 2));
-                    targets.get(i).hurt(this.getAttack());
+
+                    if(targets.get(i) != null){
+                        targets.get(i).hurt(this.getAttack());
+                    } 
                 }
 
             }
@@ -48,13 +62,17 @@ public abstract class Towers extends Buildings
     }
 
     public void calcRange(){
-        range = Math.abs( (this.getX() - (this.getWorld().getWidth() / 2)) );
+        setRange(Math.abs( (this.getX() - (this.getWorld().getWidth() / 2)) ));
+        if(this.rangeDisplay == null){
+            rangeDisplay = new RangeDisplay();
+            this.getWorld().addObject(rangeDisplay, 1, 1);
+        }
+
+        rangeDisplay.drawRange(this);
     }
 
     private List<TowerDefenceEnemys> sortByNearestToWhiteHouse(List<TowerDefenceEnemys> sortMe){
-
         List<TowerDefenceEnemys> temp = new ArrayList<TowerDefenceEnemys>();
-        
         if(!sortMe.isEmpty()){
             int mid = (sortMe.get(0).getWorld().getWidth() / 2);
             while(!sortMe.isEmpty()){
@@ -69,9 +87,23 @@ public abstract class Towers extends Buildings
                 sortMe.remove(nearest);
             }
         }
-        
+
         return temp;
     }
+
+    public void setRange(int range){
+        if(range >= 0){
+            this.range = range;
+        }
+    }
+
+    public int getRange(){
+        return range;
+    }
+
+    public void setRangeColor(Color color){ this.rangeColor = color;}
+
+    public Color getRangeColor(){ return this.rangeColor;}
 
     private class Beam extends Actor{
 

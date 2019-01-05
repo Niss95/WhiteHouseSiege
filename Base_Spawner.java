@@ -1,4 +1,6 @@
 import greenfoot.*;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Write a description of class Base_Spawner here.
@@ -27,14 +29,17 @@ public class Base_Spawner extends Spawners
 
     private boolean marked = false;
     private int spawnDelay = 2;
-    private int roundNumber = 1;
+    private int roundNumber = Engine.GameValues._Round;
     private EnemyTypes enemyTypeToSpawn;
-    private int amountToSpawn = 10;
+    private int amountToSpawn = Engine.GameValues._CurrentAmountOfEnemysToSpawn;
     private int enemyCounter = 0;
 
     //Ect:
     private Base_Ground ground = new Base_Ground();
     private Player player;
+
+    //Buttons:
+    private ReadyButton readyButton = new ReadyButton();
 
     //Buildings:
     public WhiteHouse wh;
@@ -47,8 +52,11 @@ public class Base_Spawner extends Spawners
 
     public Wall wLeft;
     public Wall wRight;
+    
+    private List<Buildings> buildings = new ArrayList<Buildings>();
 
     public Base_Spawner(Base world){
+        this.setImage(new GreenfootImage(1,1));
         this.world = world;
 
         midX = world.getWidth() / 2;
@@ -65,21 +73,30 @@ public class Base_Spawner extends Spawners
     {
 
         if(Engine.GameValues._RoundStarted && !Engine.GameValues._GameOver){
-            
-            if(player == null){spawnPlayer();}
-            spawn();
 
-            if(enemyCounter >= amountToSpawn && getWorld().getObjects(TowerDefenceEnemys.class).isEmpty()){
-                //System.out.println("finished spawning.");
-                Engine.GameValues._RoundStarted = false;
-                enemyTypeToSpawn = null;
-                if(getRandomNumber(1,2) == 1){
-                    ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.DESERT);
-                }else{
-                    ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.FOREST);
-                }
+            if(player == null){spawnPlayer();}
+
+            spawn();
+            checkRoundOver();
+        }
+    }
+
+    private void checkRoundOver(){
+        if(enemyCounter >= amountToSpawn && getWorld().getObjects(TowerDefenceEnemys.class).isEmpty()){
+
+            Engine.GameValues._RoundStarted = false;
+
+            enemyTypeToSpawn = null;
+            if(getRandomNumber(1,2) == 1){
+                ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.DESERT);
+            }else{
+                ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.FOREST);
             }
         }
+    }
+
+    public void initUpgradingPhase(){
+        world.addObject(readyButton, midX, midY / 2);
     }
 
     private void decideEnemyType(){
@@ -111,15 +128,15 @@ public class Base_Spawner extends Spawners
 
             switch (enemyTypeToSpawn){
                 case ARABS:
-                    spawnArabs();
-                    break;
+                spawnArabs();
+                break;
                 case CHINESE:
-                    spawnChinese();
-                    break;
+                spawnChinese();
+                break;
                 case MEXICANS:
-                    spawnMexicans();
-                    break;
-                
+                spawnMexicans();
+                break;
+
             }
 
             enemyCounter++;
@@ -167,6 +184,14 @@ public class Base_Spawner extends Spawners
 
         wLeft = new Wall();
         wRight = new Wall();
+        
+        buildings.add(wh);
+        buildings.add(ptLeft);
+        buildings.add(ptRight);
+        buildings.add(etLeft);
+        buildings.add(etRight);
+        buildings.add(wLeft);
+        buildings.add(wRight);
     }
 
     public void spawnBuildings(){
@@ -177,6 +202,7 @@ public class Base_Spawner extends Spawners
         //Tower:
         world.addObject(etLeft, midX - ((wh.getImage().getWidth() / 2) + offset_et), world.getHeight() - ground.getImage().getHeight() - (etLeft.getImage().getHeight() / 2) );
         world.addObject(etRight, midX + ((wh.getImage().getWidth() / 2) + offset_et), world.getHeight() - ground.getImage().getHeight() - (etRight.getImage().getHeight() / 2) );
+        
 
         world.addObject(ptLeft, midX - ((wh.getImage().getWidth() / 2) + offset_pt), world.getHeight() - ground.getImage().getHeight() - (ptLeft.getImage().getHeight() / 2) );
         world.addObject(ptRight, midX + ((wh.getImage().getWidth() / 2) + offset_pt), world.getHeight() - ground.getImage().getHeight() - (ptRight.getImage().getHeight() / 2) );
@@ -185,15 +211,19 @@ public class Base_Spawner extends Spawners
         world.addObject(wLeft, midX - ((wh.getImage().getWidth() / 2) + offset_wall), world.getHeight() - ground.getImage().getHeight() - (wLeft.getImage().getHeight() / 2) + offset_buildingHeight );
         world.addObject(wRight, midX + ((wh.getImage().getWidth() / 2) + offset_wall), world.getHeight() - ground.getImage().getHeight() - (wRight.getImage().getHeight() / 2)  + offset_buildingHeight);
 
+        //spawn Displays:
+        for(Buildings b : buildings){
+            b.addDisplay();
+        }
     }
 
     public void spawnGround(){
         world.addObject(ground, world.getWidth() / 2, world.getHeight() - (ground.getImage().getHeight() / 2));
     }
-    
+
     public void spawnPlayer(){
         player = new Player();
-        world.addObject(player, world.getWidth() / 2, world.getHeight() / 2);
+        world.addObject(player, wh.getX(), wh.getY());
     }
 
     //Getter & Setter:
@@ -208,10 +238,6 @@ public class Base_Spawner extends Spawners
 
     public int getSpawnHeight(){
         return spawnHeight;
-    }
-
-    public void setSpawning(boolean b){
-        Engine.GameValues._RoundStarted = b;
     }
 
 }

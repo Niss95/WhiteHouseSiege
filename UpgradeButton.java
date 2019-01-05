@@ -8,10 +8,11 @@ import greenfoot.*;
  */
 public class UpgradeButton extends Buttons
 {
-    private GreenfootImage upgradeButton = new GreenfootImage("upgradeButton.png");
+    private GreenfootImage image_visible = Engine.ImageLoader._UpgradeButton_visible;
+    private GreenfootImage image_invisible = Engine.ImageLoader._UpgradeButton_invisible;
     
     public UpgradeButton(){
-        this.setImage(upgradeButton);
+        this.setImage(image_visible);
     }
     
     public void act() {

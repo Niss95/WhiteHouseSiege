@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=
-comment0.target=Wall()
+comment0.target=ReadyButton()
 comment1.params=
-comment1.target=void\ checkDeath()
+comment1.target=void\ act()
 numComments=2

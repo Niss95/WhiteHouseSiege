@@ -50,7 +50,7 @@ public abstract class TowerDefenceEnemys extends Enemys
 
     private void checkAttack(){
         if(this.getOneIntersectingObject(AttackableBuildings.class) != null){
-            target = (Buildings) this.getOneIntersectingObject(Buildings.class);
+            target = (Buildings) this.getOneIntersectingObject(AttackableBuildings.class);
 
             if(timer.millisElapsed() >= (this.getAttackSpeed() * 1000)){
                 target.hurt(this.getAttack());

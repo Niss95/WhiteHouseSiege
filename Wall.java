@@ -9,13 +9,28 @@ import greenfoot.*;
 public class Wall extends AttackableBuildings
 {
     private GreenfootImage image = Engine.ImageLoader._image_Wall;
-    
-    private int initHealth = 200;
-    
+
+    private int initHealth = 200000;
+
     public Wall(){
         this.setImage(image);
         initHp(initHealth);
-        
-        
-    }   
+
+        setIntact(true);
+    }  
+
+    @Override
+    public void checkDeath(){
+        if(getHp() == 0){
+            if(bar != null){
+                getWorld().removeObject(bar);
+            }
+
+            setIntact(false);
+            lastX = getX();
+            lastY = getY();
+            getWorld().removeObject(this);
+            Engine.GameValues._GameOver = true;
+        }
+    }
 }

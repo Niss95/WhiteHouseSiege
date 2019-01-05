@@ -48,15 +48,16 @@ public class Player extends Unit
      */
     public void act() 
     {
-        if(!grounded() && jumping == false){
-            gravity();
+        if(!Engine.GameValues._GameOver){
+            if(!grounded() && !jumping){
+                gravity();
+            }
+            ShowScore();
+            jump();
+            userinput();
+            checkHit();
+            checkDeath();
         }
-        ShowScore();
-        jump();
-        userinput();
-        checkHit();
-        checkDeath();
-        //ab hier alle Aktionen!
     }   
 
     private void ShowScore(){

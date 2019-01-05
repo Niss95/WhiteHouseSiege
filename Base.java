@@ -22,19 +22,33 @@ public class Base extends Level
         this.addObject(spawner, 0, 0);
         prepare();
         
-        startRound();
+        initUpgradingPhase();
     }
 
+    public Base()
+    {    
+        super(new MainMenu(), Engine.Config._Width, Engine.Config._Height); 
+        this.setBackground(background);
+        
+        spawner = new Base_Spawner(this);
+        this.addObject(spawner, 0, 0);
+        prepare();
+        
+        initUpgradingPhase();
+    }
     
     
     private void prepare()
     {
-
         spawner.spawnGround();
         spawner.spawnBuildings();
     }
     
-    private void startRound(){
-        spawner.setSpawning(true);
+    private void initUpgradingPhase(){
+        spawner.initUpgradingPhase();
+    }
+    
+    public void startRound(){
+        Engine.GameValues._RoundStarted = true;   
     }
 }

@@ -15,13 +15,27 @@ public class Engine
 
     }
 
+    public static class GameValuesFixed{
+
+        public static int _CurrentAmountOfEnemysToSpawn = 10;
+        public static int _ResPerRoundBase = 500;
+
+        public static int _FirstRoundTime = 3000;
+        public static int _RoundTimeDecreases = 500;
+        public static int _MinimumRoundTimer = 1000;
+
+    }
+
     public static class GameValues{
+
+        public static int _CurrentRoundTime = Engine.GameValuesFixed._FirstRoundTime;
 
         public static boolean _GameOver = false;
 
         public static boolean _RoundStarted = false;
 
-        public static int _Round = 0;
+        public static int _Round = 1;
+        public static int _CurrentAmountOfEnemysToSpawn = 10;
         public static int _Res = 0;
 
     }
@@ -29,17 +43,22 @@ public class Engine
     public static class ActorValues{
         //Player:
         public static int _ShootInterval = 500;
+
         //Bullet:
         public static int _BulletSpeed = 20;
         public static int _BulletDamage = 100;
+
+        //Display: 
+        public static int _Display_Position_Y = 600;
+
         //Enemys:
         public static int _ArabLife = 200;
         public static int _ChineseLife = 50;
         public static int _MexicanLife = 100;
 
         public static int _ArabSpeed = 3;
-        public static int _ChineseSpeed = 4;
-        public static int _MexicanSpeed = 3;
+        public static int _ChineseSpeed = 46;
+        public static int _MexicanSpeed = 4;
 
         public static int _ArabAttackSpeed = 2;
         public static int _ChineseAttackSpeed = 1;
@@ -58,8 +77,14 @@ public class Engine
     public static class ImageLoader{
         //  Engine.ImageLoader.xxx;
 
+        //Buttons
         public static GreenfootImage _startButton = new GreenfootImage("startButton.png");
         public static GreenfootImage _exitButton = new GreenfootImage("exitButton.png");
+
+        public static GreenfootImage _ReadyButton = new GreenfootImage("readyButton.png");
+
+        public static GreenfootImage _UpgradeButton_visible = new GreenfootImage("upgradeButton_visible.png");
+        public static GreenfootImage _UpgradeButton_invisible = new GreenfootImage("upgradeButton_invisible.png");
 
         //Player:
         public static GreenfootImage _image_right_Player = new GreenfootImage("player_right.png");
@@ -68,7 +93,7 @@ public class Engine
         //Bullet:
         public static GreenfootImage _image_right_Bullet = new GreenfootImage("bullet_right.png");
         public static GreenfootImage _image_left_Bullet = new GreenfootImage("bullet_left.png");
-        
+
         //Enemys:
         //Arabs
         public static GreenfootImage _image_right_Arab = new GreenfootImage("arab_right.png");

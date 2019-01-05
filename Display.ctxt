@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=level\ visible
+comment0.target=Display(int,\ boolean)
+comment1.params=
+comment1.target=void\ checkLevelZweistellig()
+comment2.params=visible
+comment2.target=void\ setVisible(boolean)
+comment3.params=level
+comment3.target=void\ updateDisplay(int)
+comment4.params=
+comment4.target=void\ redraw()
+comment5.params=
+comment5.target=void\ act()
+numComments=6

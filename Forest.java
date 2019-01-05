@@ -23,6 +23,9 @@ public class Forest extends Platformer
     int time=3000;
     long interval=getRandomTime(150, 500);
     private SimpleTimer timer=new SimpleTimer(); // funktioniert noch nicht    
+    
+    //Etc: 
+    private boolean initialized = false;
     //----------------------------------------------
 
     public Forest(MainMenu menu)
@@ -31,7 +34,26 @@ public class Forest extends Platformer
 
         this.setBackground(new GreenfootImage("forest_background.png"));
 
+        initValues();
         prepare();
+    }
+
+    public void act(){
+        if(!initialized){initValues();}
+        show_time();
+        time--;
+        addEnemys();
+        if (time==0) {
+            initialized = false;
+            menu.switchWorldTo(MainMenu.levelTypes.BASE);   
+        }                
+    } 
+
+    private void initValues(){
+        Engine.GameValues._CurrentRoundTime = Engine.GameValues._CurrentRoundTime - Engine.GameValuesFixed._RoundTimeDecreases;
+        if(Engine.GameValues._CurrentRoundTime < Engine.GameValuesFixed._MinimumRoundTimer){ Engine.GameValues._CurrentRoundTime = Engine.GameValuesFixed._MinimumRoundTimer;}
+        time = Engine.GameValues._CurrentRoundTime;
+        initialized = true;
     }
 
     private void prepare()
@@ -170,18 +192,7 @@ public class Forest extends Platformer
         HQ headq = new HQ();
         addObject(headq, 38, 775);
 
-
     }
-
-    public void act(){
-        show_time();
-        time--;
-        addEnemys();
-        if (time==0) {
-            menu.switchWorldTo(MainMenu.levelTypes.BASE);
-        }                
-    } 
-
     private void addRessources(){
         for(int j=0; j < 3;j++){
             for(int i=0; i < 5; i++){

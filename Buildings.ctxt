@@ -1,2 +1,10 @@
 #BlueJ class context
-numComments=0
+comment0.params=
+comment0.target=void\ addDisplay()
+comment1.params=level
+comment1.target=void\ updateDisplay(int)
+comment2.params=
+comment2.target=boolean\ getIntact()
+comment3.params=intact
+comment3.target=void\ setIntact(boolean)
+numComments=4

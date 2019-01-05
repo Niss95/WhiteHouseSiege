@@ -10,34 +10,55 @@ public class Desert extends Platformer
 {
     private static int width = 1800;
     private static int height = 900;
-    
+
     private Base_Ground ground;
-    
+
     //----------------------------------------------
     int max_Mexicans= 4;
     int max_Chinese= 3;
     int max_Arabs= 4;
-    
+
     int act_Mexicans = 0;
     int act_Arabs = 0;
     int act_Chinese = 0;
-    
+
     long begintime=System.currentTimeMillis();
-    int time=3000;
+    int time;
     long interval=getRandomTime(150, 500);
-    private SimpleTimer timer=new SimpleTimer(); // funktioniert noch nicht    
-    //----------------------------------------------
+    private SimpleTimer timer=new SimpleTimer(); // funktioniert noch nicht  
     
+    //Etc: 
+    private boolean initialized = false;
+    //----------------------------------------------
+
     public Desert(MainMenu menu)
     {
         super(menu, width, height);
-        
+
         this.setBackground(new GreenfootImage("desert_background.png"));
-        
+
+        initValues();
         prepare();
     }
+
+    public void act(){
+        if(!initialized){initValues();}
+        show_time();
+        time--;
+        addEnemys();
+        if (time==0) {
+            initialized = false;
+            menu.switchWorldTo(MainMenu.levelTypes.BASE);   
+        }                
+    } 
     
-    
+    private void initValues(){
+        Engine.GameValues._CurrentRoundTime = Engine.GameValues._CurrentRoundTime - Engine.GameValuesFixed._RoundTimeDecreases;
+        if(Engine.GameValues._CurrentRoundTime < Engine.GameValuesFixed._MinimumRoundTimer){ Engine.GameValues._CurrentRoundTime = Engine.GameValuesFixed._MinimumRoundTimer;}
+        time = Engine.GameValues._CurrentRoundTime;
+        initialized = true;
+    }
+
     private void prepare()
     {
         Desert_Ground desg = new Desert_Ground();
@@ -143,9 +164,9 @@ public class Desert extends Platformer
         Cactus2 cactus24 = new Cactus2();
         addObject(cactus24, 1280, 561);
     }
-    
+
     private void spawnObjects(){
-        
+
         Player player = new Player();
         addObject(player, 60, 718);
         addObject(new Mexican("right"), 500, 300);
@@ -155,79 +176,70 @@ public class Desert extends Platformer
         act_Mexicans= act_Mexicans+1;
         act_Chinese=act_Chinese +1;
         act_Arabs=act_Arabs+1;
-      Steel steel2 = new Steel();
-      Coin coin = new Coin();
-      Barrel2k barrel = new Barrel2k();
-      addObject(barrel, 1675, 22);
-      addObject(steel2, 1724, 22);
-      addObject(coin, 1621, 21);  
-      addObject(new Plane1(), 208, 170);
-      addObject(new Plane2(), 917, 79);
-      Barrels barrel2 = new Barrel2();
-      addObject(barrel2, 136, 260);
-      Bomb2 bomb = new Bomb2();
-      addObject(bomb, 212, 44);
-      Bomb2 bomb2 = new Bomb2();
-      addObject(bomb2, 1560, 81);
-      
-      Tempel temple = new Tempel();
-      addObject(temple, 1539, 215);
-      Tempel_China tempelchina = new Tempel_China();
-      addObject(tempelchina, 949, 185);
-      Tower tower = new Tower();
-      addObject(tower, 320, 189);
-      Tower tower2 = new Tower();
-      addObject(tower2, 360, 189);
-      HQ headq = new HQ();
-      addObject(headq, 38, 775);
-      
-      
+        Steel steel2 = new Steel();
+        Coin coin = new Coin();
+        Barrel2k barrel = new Barrel2k();
+        addObject(barrel, 1675, 22);
+        addObject(steel2, 1724, 22);
+        addObject(coin, 1621, 21);  
+        addObject(new Plane1(), 208, 170);
+        addObject(new Plane2(), 917, 79);
+        Barrels barrel2 = new Barrel2();
+        addObject(barrel2, 136, 260);
+        Bomb2 bomb = new Bomb2();
+        addObject(bomb, 212, 44);
+        Bomb2 bomb2 = new Bomb2();
+        addObject(bomb2, 1560, 81);
+
+        Tempel temple = new Tempel();
+        addObject(temple, 1539, 215);
+        Tempel_China tempelchina = new Tempel_China();
+        addObject(tempelchina, 949, 185);
+        Tower tower = new Tower();
+        addObject(tower, 320, 189);
+        Tower tower2 = new Tower();
+        addObject(tower2, 360, 189);
+        HQ headq = new HQ();
+        addObject(headq, 38, 775);
+
 
     }
-    
-    public void act(){
-        show_time();
-        time--;
-        addEnemys();
-        if (time==0) {
-                menu.switchWorldTo(MainMenu.levelTypes.BASE);   
-            }                
-        } 
-         private void addRessources(){
+
+    private void addRessources(){
         for(int j=0; j < 3;j++){
             for(int i=0; i < 5; i++){
-            int h = Greenfoot.getRandomNumber(900);
-            int b = Greenfoot.getRandomNumber(1750);
-            int c = Greenfoot.getRandomNumber(30);
-            
-            if(c <= 10){
-                addObject(new Brick4(), b, h);
-            } else if( c > 10 && c <= 20){
-                addObject(new Brick3(), b, h);
-            } else{
-                addObject(new BrickMovingWhenTouched(), b, h);
-            }
-            if(j==1){
-            addObject(new Barrel2(), b -20, h - 35);
-           } else if(j==2){            
-            addObject(new Steel(), b, h - 25);
-           } else if(j==0){
-            addObject(new Coin(), b+25, h-20);
-           }
-        }   
+                int h = Greenfoot.getRandomNumber(900);
+                int b = Greenfoot.getRandomNumber(1750);
+                int c = Greenfoot.getRandomNumber(30);
+
+                if(c <= 10){
+                    addObject(new Brick4(), b, h);
+                } else if( c > 10 && c <= 20){
+                    addObject(new Brick3(), b, h);
+                } else{
+                    addObject(new BrickMovingWhenTouched(), b, h);
+                }
+                if(j==1){
+                    addObject(new Barrel2(), b -20, h - 35);
+                } else if(j==2){            
+                    addObject(new Steel(), b, h - 25);
+                } else if(j==0){
+                    addObject(new Coin(), b+25, h-20);
+                }
+            }   
+        }
     }
-}
-        
+
     public int getRandomNumber(int start, int end){
         int number=Greenfoot.getRandomNumber(end);
         return number+start;
     }
-    
+
     public long getRandomTime(long start, long end){
-         long number=Greenfoot.getRandomNumber((int)(end-start));
+        long number=Greenfoot.getRandomNumber((int)(end-start));
         return number+start;
     }
-    
+
     public String randomdirection(){
         int number=Greenfoot.getRandomNumber(100);
         if(number%2==0){
@@ -237,13 +249,13 @@ public class Desert extends Platformer
             return "left";
         }
     }    
-    
+
     public void addEnemys(){
         addRandommexicans();
         addRandomChinese();
         addRandomArabs();
     }
-    
+
     public void addRandommexicans (){
         if(act_Mexicans < max_Mexicans && (timer.millisElapsed() >= getRandomTime(255, 1550))){   
             addObject(new Mexican (randomdirection()), getRandomNumber(0, 1000),getRandomNumber(0, 500));
@@ -251,35 +263,35 @@ public class Desert extends Platformer
             timer.mark();
         } 
     }
-    
-     public void addRandomChinese (){
+
+    public void addRandomChinese (){
         if(act_Chinese < max_Chinese && (timer.millisElapsed() > getRandomTime(255, 2550))){   
             addObject(new Chinese (randomdirection()), getRandomNumber(0, 1000),getRandomNumber(0, 500));
             act_Chinese= act_Chinese+1;
             timer.mark();
         } 
     }
-    
-     public void addRandomArabs(){
+
+    public void addRandomArabs(){
         if(act_Arabs < max_Arabs && (timer.millisElapsed() > getRandomTime(255, 2550))){   
             addObject(new Arab (randomdirection()), getRandomNumber(0, 1000),getRandomNumber(0, 500));
             act_Arabs= act_Arabs+1;
             timer.mark();
         } 
-    }  
-    
+    }
+
     public void show_time(){ showText("Time: "+time, 65, 20);}
-    
+
     public void setActMexicans(int i){ this.act_Mexicans = i;}
-    
+
     public int getActMexicans(){return this.act_Mexicans;}
-    
+
     public void setActChinese(int i){ this.act_Chinese = i;}
-    
+
     public int getActChinese(){return this.act_Chinese;}
-    
+
     public void setActArabs(int i){ this.act_Arabs = i;}
-    
+
     public int getActArabs(){return this.act_Arabs;}
-    
+
 }

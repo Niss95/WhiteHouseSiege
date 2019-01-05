@@ -2,7 +2,11 @@
 comment0.params=menu
 comment0.target=Base(MainMenu)
 comment1.params=
-comment1.target=void\ prepare()
+comment1.target=Base()
 comment2.params=
-comment2.target=void\ startRound()
-numComments=3
+comment2.target=void\ prepare()
+comment3.params=
+comment3.target=void\ initUpgradingPhase()
+comment4.params=
+comment4.target=void\ startRound()
+numComments=5

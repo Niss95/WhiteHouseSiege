@@ -43,7 +43,7 @@ public class MainMenu extends World
     
     public void startPressed(){
         Engine.GameValues._GameOver = false;
-        Engine.GameValues._RoundStarted = true;
+        Engine.GameValues._RoundStarted = false;
         switchWorldTo(levelTypes.BASE);
     }
     
