@@ -9,7 +9,7 @@ import greenfoot.*;
 public class Base extends Level
 {
     private Base_Ground ground;
-    private Base_Spawner spawner;
+    private Base_Logic logic;
     
     private GreenfootImage background = new GreenfootImage("base_background.png"); 
 
@@ -18,8 +18,8 @@ public class Base extends Level
         super(menu, Engine.Config._Width, Engine.Config._Height); 
         this.setBackground(background);
         
-        spawner = new Base_Spawner(this);
-        this.addObject(spawner, 0, 0);
+        logic = new Base_Logic(this);
+        this.addObject(logic, 0, 0);
         prepare();
         
         initUpgradingPhase();
@@ -30,8 +30,8 @@ public class Base extends Level
         super(new MainMenu(), Engine.Config._Width, Engine.Config._Height); 
         this.setBackground(background);
         
-        spawner = new Base_Spawner(this);
-        this.addObject(spawner, 0, 0);
+        logic = new Base_Logic(this);
+        this.addObject(logic, 0, 0);
         prepare();
         
         initUpgradingPhase();
@@ -40,15 +40,15 @@ public class Base extends Level
     
     private void prepare()
     {
-        spawner.spawnGround();
-        spawner.spawnBuildings();
+        logic.spawnGround();
+        logic.spawnBuildings();
     }
     
     private void initUpgradingPhase(){
-        spawner.initUpgradingPhase();
+        logic.initUpgradingPhase();
     }
     
     public void startRound(){
-        Engine.GameValues._RoundStarted = true;   
+        logic.startRound();  
     }
 }

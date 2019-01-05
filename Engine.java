@@ -84,7 +84,7 @@ public class Engine
         public static GreenfootImage _ReadyButton = new GreenfootImage("readyButton.png");
 
         public static GreenfootImage _UpgradeButton_visible = new GreenfootImage("upgradeButton_visible.png");
-        public static GreenfootImage _UpgradeButton_invisible = new GreenfootImage("upgradeButton_invisible.png");
+        public static GreenfootImage _UpgradeButton_unclickable = new GreenfootImage("upgradeButton_unclickable.png");
 
         //Player:
         public static GreenfootImage _image_right_Player = new GreenfootImage("player_right.png");

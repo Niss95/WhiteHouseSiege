@@ -1,6 +1,12 @@
 #BlueJ class context
-comment0.params=
-comment0.target=UpgradeButton()
+comment0.params=building
+comment0.target=UpgradeButton(Buildings)
 comment1.params=
 comment1.target=void\ act()
-numComments=2
+comment2.params=visible
+comment2.target=void\ setVisible(boolean)
+comment3.params=
+comment3.target=int\ getPosX()
+comment4.params=
+comment4.target=int\ getPosY()
+numComments=5

@@ -43,7 +43,6 @@ public abstract class Towers extends Buildings
 
     public void checkAttack(){
         if(attackTimer.millisElapsed() >= (this.getAttackSpeed())){
-            calcRange();
 
             targets = sortByNearestToWhiteHouse(getObjectsInRange(range, TowerDefenceEnemys.class));
 
@@ -91,6 +90,10 @@ public abstract class Towers extends Buildings
         return temp;
     }
 
+    public RangeDisplay getRangeDisplay(){
+        return rangeDisplay;
+    }
+    
     public void setRange(int range){
         if(range >= 0){
             this.range = range;

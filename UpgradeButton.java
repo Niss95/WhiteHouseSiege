@@ -9,16 +9,42 @@ import greenfoot.*;
 public class UpgradeButton extends Buttons
 {
     private GreenfootImage image_visible = Engine.ImageLoader._UpgradeButton_visible;
-    private GreenfootImage image_invisible = Engine.ImageLoader._UpgradeButton_invisible;
+    private GreenfootImage image_unclickable = Engine.ImageLoader._UpgradeButton_unclickable;
+    private GreenfootImage image_invisible = new GreenfootImage(1, 1);
     
-    public UpgradeButton(){
+    private int posX;
+    private int posY;
+    
+    private Buildings building;
+    
+    private boolean visible;
+    
+    public UpgradeButton(Buildings building){
         this.setImage(image_visible);
+        this.building = building;
+        visible = true;
+        posX = building.getX();
+        posY = building.getY();
     }
     
     public void act() {
-        if (Greenfoot.mouseClicked(this)) {
+        if (visible && Greenfoot.mouseClicked(this)) {
             
             //do stuff
         }
+    }
+    
+    public void setVisible(boolean visible){
+        this.visible = visible;
+        if(visible){this.setImage(image_visible);}
+        else{this.setImage(image_invisible);}
+    }
+    
+    public int getPosX(){
+        return posX;
+    }
+    
+    public int getPosY(){
+        return posY;
     }
 }

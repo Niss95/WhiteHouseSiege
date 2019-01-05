@@ -10,8 +10,9 @@ import java.awt.Color;
 public class RangeDisplay extends Actor
 {
     private GreenfootImage imageRange = new GreenfootImage(1, 1);
-    
+    private GreenfootImage imageRange_invisible = new GreenfootImage(1, 1);
     private int range;
+    private boolean visible;
     
     public RangeDisplay(){
         this.setImage(imageRange);
@@ -29,8 +30,18 @@ public class RangeDisplay extends Actor
         imageRange.setColor(tower.getRangeColor());
         imageRange.drawOval(1, 1, range * 2, range * 2);
         this.setImage(imageRange);
+        visible = true;
     }
     
+    public void setVisible(boolean visible){
+        this.visible = visible;
+        if(this.visible){
+            setImage(imageRange);
+        }
+        else{
+            setImage(imageRange_invisible);
+        }
+    }
     
     @Override
     public void act(){

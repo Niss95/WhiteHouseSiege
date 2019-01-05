@@ -32,7 +32,7 @@ public class MainMenu extends World
     
     private void prepare(){
         this.setBackground(Engine.ImageLoader._image_MainMenu_BackGround);
-        
+
         baseLevel = new Base(this);
         desertLevel = new Desert(this);
         forestLevel = new Forest(this);

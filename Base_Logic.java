@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author (Dennis Sellemann)
  * @version (a version number or a date)
  */
-public class Base_Spawner extends Spawners
+public class Base_Logic extends Logic
 {
     private enum EnemyTypes{ ARABS, CHINESE, MEXICANS; }
     private SimpleTimer timer = new SimpleTimer();
@@ -52,10 +52,11 @@ public class Base_Spawner extends Spawners
 
     public Wall wLeft;
     public Wall wRight;
-    
-    private List<Buildings> buildings = new ArrayList<Buildings>();
 
-    public Base_Spawner(Base world){
+    private List<Buildings> buildings = new ArrayList<Buildings>();
+    private List<UpgradeButton> upgradeButtons = new ArrayList<UpgradeButton>();
+
+    public Base_Logic(Base world){
         this.setImage(new GreenfootImage(1,1));
         this.world = world;
 
@@ -69,8 +70,7 @@ public class Base_Spawner extends Spawners
         initBuildings();
     }
 
-    public void act() 
-    {
+    public void act(){
 
         if(Engine.GameValues._RoundStarted && !Engine.GameValues._GameOver){
 
@@ -79,6 +79,19 @@ public class Base_Spawner extends Spawners
             spawn();
             checkRoundOver();
         }
+    }
+
+    public void startRound(){
+        for(Buildings t : buildings){
+            if(t instanceof Towers){
+                ((Towers)t).getRangeDisplay().setVisible(false);
+            }
+        }
+        
+        for(UpgradeButton b : upgradeButtons){
+            b.setVisible(false);
+        }
+        Engine.GameValues._RoundStarted = true;
     }
 
     private void checkRoundOver(){
@@ -97,7 +110,20 @@ public class Base_Spawner extends Spawners
 
     public void initUpgradingPhase(){
         world.addObject(readyButton, midX, midY / 2);
+
+        if(upgradeButtons.isEmpty()){
+            for(Buildings b : buildings){
+                UpgradeButton button_temp = new UpgradeButton(b);
+                upgradeButtons.add(button_temp);
+            }
+        }
+
+        for(UpgradeButton b : upgradeButtons){
+            world.addObject(b, b.getPosX() , b.getPosY());
+        }
     }
+
+    public void endUpgradePhase(){}
 
     private void decideEnemyType(){
         int random = getRandomNumber(1,3);
@@ -184,7 +210,7 @@ public class Base_Spawner extends Spawners
 
         wLeft = new Wall();
         wRight = new Wall();
-        
+
         buildings.add(wh);
         buildings.add(ptLeft);
         buildings.add(ptRight);
@@ -202,7 +228,6 @@ public class Base_Spawner extends Spawners
         //Tower:
         world.addObject(etLeft, midX - ((wh.getImage().getWidth() / 2) + offset_et), world.getHeight() - ground.getImage().getHeight() - (etLeft.getImage().getHeight() / 2) );
         world.addObject(etRight, midX + ((wh.getImage().getWidth() / 2) + offset_et), world.getHeight() - ground.getImage().getHeight() - (etRight.getImage().getHeight() / 2) );
-        
 
         world.addObject(ptLeft, midX - ((wh.getImage().getWidth() / 2) + offset_pt), world.getHeight() - ground.getImage().getHeight() - (ptLeft.getImage().getHeight() / 2) );
         world.addObject(ptRight, midX + ((wh.getImage().getWidth() / 2) + offset_pt), world.getHeight() - ground.getImage().getHeight() - (ptRight.getImage().getHeight() / 2) );
