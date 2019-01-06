@@ -23,21 +23,20 @@ public class Desert extends Platformer
     int act_Chinese = 0;
 
     long begintime=System.currentTimeMillis();
-    int time;
     long interval=getRandomTime(150, 500);
     private SimpleTimer timer=new SimpleTimer(); // funktioniert noch nicht  
-    
+
     //Etc: 
-    private boolean initialized = false;
+    private RessourcenDisplay resDisplay = new RessourcenDisplay(true);
+
     //----------------------------------------------
 
     public Desert(MainMenu menu)
     {
         super(menu, width, height);
-
         this.setBackground(new GreenfootImage("desert_background.png"));
-
-        initValues();
+        this.addObject(resDisplay, (this.getWidth() / 2), 0 + (resDisplay.getImage().getHeight()));
+        //initValues();
         prepare();
     }
 
@@ -46,13 +45,12 @@ public class Desert extends Platformer
         show_time();
         time--;
         addEnemys();
-        if (time==0) {
-            initialized = false;
-            menu.switchWorldTo(MainMenu.levelTypes.BASE);   
+        if (time <= 0) {
+            endRoutine(); 
         }                
     } 
-    
-    private void initValues(){
+
+    public void initValues(){
         Engine.GameValues._CurrentRoundTime = Engine.GameValues._CurrentRoundTime - Engine.GameValuesFixed._RoundTimeDecreases;
         if(Engine.GameValues._CurrentRoundTime < Engine.GameValuesFixed._MinimumRoundTimer){ Engine.GameValues._CurrentRoundTime = Engine.GameValuesFixed._MinimumRoundTimer;}
         time = Engine.GameValues._CurrentRoundTime;
@@ -167,8 +165,7 @@ public class Desert extends Platformer
 
     private void spawnObjects(){
 
-        Player player = new Player();
-        addObject(player, 60, 718);
+        
         addObject(new Mexican("right"), 500, 300);
         addObject(new Chinese("left"), 900, 300);
         addObject(new Arab("left"), 900, 300);
@@ -199,16 +196,20 @@ public class Desert extends Platformer
         addObject(tower, 320, 189);
         Tower tower2 = new Tower();
         addObject(tower2, 360, 189);
-        HQ headq = new HQ();
-        addObject(headq, 38, 775);
-
+        HQ hq = new HQ();
+        addObject(hq, 38, 700);
+        
+        player = new Player();
+        player.setSpawnX(hq.getX());
+        player.setSpawnY(hq.getY() -  hq.getImage().getHeight() );
+        this.addObject(player, player.getSpawnX(), player.getSpawnY());
 
     }
 
     private void addRessources(){
         for(int j=0; j < 3;j++){
             for(int i=0; i < 5; i++){
-                int h = Greenfoot.getRandomNumber(900);
+                int h = Greenfoot.getRandomNumber(875);
                 int b = Greenfoot.getRandomNumber(1750);
                 int c = Greenfoot.getRandomNumber(30);
 

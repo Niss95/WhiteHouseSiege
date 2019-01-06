@@ -14,6 +14,9 @@ public abstract class TowerDefenceEnemys extends Enemys
     private SimpleTimer timer = new SimpleTimer();
     private Buildings target;
 
+    private int slowCounter = 0;
+    private boolean slowed = false;
+
     public void act() 
     {
         checkGravity();
@@ -22,10 +25,34 @@ public abstract class TowerDefenceEnemys extends Enemys
             checkRun();
             checkAttack();
 
+            checkSlow();
             checkDeath();
         }
 
     }    
+
+    public void checkSlow(){
+        if(slowed){
+            if(slowCounter > 0){
+                slowCounter--;
+            }else{
+                slowed = false;
+                setSpeed(getSpeed() * 2);
+                setAttackSpeed(getAttackSpeed() / 2);
+            }
+        }
+    }
+
+    public void slow(int i){
+        if(!slowed){
+            if((getSpeed() / 2 > 0) && (getAttackSpeed() * 2 > 0)){
+                slowCounter = i;
+                setSpeed(getSpeed() / 2);
+                setAttackSpeed(getAttackSpeed() * 2);
+                slowed = true;
+            }
+        }
+    }
 
     private void checkRun(){
         if(grounded()){
@@ -37,7 +64,6 @@ public abstract class TowerDefenceEnemys extends Enemys
                     run(getDirection(), image_right, image_left);
                 }
 
-                
             }
         }
     }
@@ -52,7 +78,7 @@ public abstract class TowerDefenceEnemys extends Enemys
         if(this.getOneIntersectingObject(AttackableBuildings.class) != null){
             target = (Buildings) this.getOneIntersectingObject(AttackableBuildings.class);
 
-            if(timer.millisElapsed() >= (this.getAttackSpeed() * 1000)){
+            if(timer.millisElapsed() >= (this.getAttackSpeed())){
                 target.hurt(this.getAttack());
                 timer.mark();
             }

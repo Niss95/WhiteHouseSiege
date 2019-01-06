@@ -28,7 +28,7 @@ public class Display extends Actor
     public Display(int level, boolean visible){
         this.visible = visible;
         this.level = level;
-        checkLevelZweistellig();
+        checkDisplayBreite();
 
         redraw();
 
@@ -40,7 +40,7 @@ public class Display extends Actor
         }
     }
 
-    private void checkLevelZweistellig(){
+    private void checkDisplayBreite(){
         if(level >= 100){
             width = width100;
             image = new GreenfootImage(width, height);
@@ -54,6 +54,7 @@ public class Display extends Actor
             image = new GreenfootImage(width, height);
         }
     }
+    
 
     public void setVisible(boolean visible){
         this.visible = visible;
@@ -67,7 +68,7 @@ public class Display extends Actor
 
     public void updateDisplay(int level){
         this.level = level;
-        checkLevelZweistellig();
+        checkDisplayBreite();
 
         redraw();
 

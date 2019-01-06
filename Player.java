@@ -26,6 +26,8 @@ public class Player extends Unit
     private boolean jumping = false;
     private boolean spacedown = false;
 
+    
+    private int collectedRessources = 0;
     private int coins=0;
     private int barrel=0;
     private int steel=0;
@@ -33,6 +35,9 @@ public class Player extends Unit
     private SimpleTimer timer=new SimpleTimer();
     private String direction="right";
     private boolean shooot=false;
+    
+    private int spawnX = 0;
+    private int spawnY = 0;
 
     // standard Konstruktor
     public Player(){
@@ -53,6 +58,7 @@ public class Player extends Unit
                 gravity();
             }
             ShowScore();
+            changeRessources();
             jump();
             userinput();
             checkHit();
@@ -60,20 +66,43 @@ public class Player extends Unit
         }
     }   
 
+    private void changeRessources(){
+        if(isTouching(HQ.class)){
+            addRessources();
+        }
+    }
+
+    public void addRessources(){
+
+        collectedRessources += (coins * Engine.GameValuesFixed._CoinValue);
+        collectedRessources += (barrel * Engine.GameValuesFixed._BarrelValue);
+        collectedRessources += (steel * Engine.GameValuesFixed._SteelValue);
+        
+        coins = 0;
+        barrel = 0;
+        steel = 0;
+        
+        Engine.GameValues._RessourcesCurrent += collectedRessources;
+        collectedRessources = 0;
+    }
+
     private void ShowScore(){
-        if(isTouching(Barrels.class)){
-            barrel++;
-            removeTouching(Barrels.class);
+        if(this.getWorld() instanceof Platformer){
+
+            if(isTouching(Barrels.class)){
+                barrel++;
+                removeTouching(Barrels.class);
+            }
+            if(isTouching(Coin.class)){
+                coins++;
+                removeTouching(Coin.class);
+            }
+            if(isTouching(Steel.class)){
+                steel++;
+                removeTouching(Steel.class);
+            }
+            getWorld().showText(coins + "     " + barrel + "      " + steel, 1697, 20);
         }
-        if(isTouching(Coin.class)){
-            coins++;
-            removeTouching(Coin.class);
-        }
-        if(isTouching(Steel.class)){
-            steel++;
-            removeTouching(Steel.class);
-        }
-        getWorld().showText(coins + "     " + barrel + "      " + steel, 1697, 20);
     }
 
     private void userinput(){
@@ -155,7 +184,7 @@ public class Player extends Unit
                 barrel=0;
                 steel=0;
                 setHp(100);
-                setLocation(60, 725);
+                setLocation(getSpawnX(), getSpawnY());
             }
             else{
                 setHp(100);
@@ -164,6 +193,22 @@ public class Player extends Unit
         }
     }
 
+    
+    public void setSpawnX(int x){
+        this.spawnX = x;
+    }
+    
+    public void setSpawnY(int y){
+        this.spawnY = y;
+    }
+    
+    public int getSpawnX(){
+        return this.spawnX;
+    }
+    
+    public int getSpawnY(){
+        return this.spawnY;
+    }
     //public void setScore(double score) { this.score=score; }
     //public double getScore() { return score; }
 }

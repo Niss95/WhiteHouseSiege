@@ -21,32 +21,14 @@ public class Chinese extends PlatformerEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.ActorValues._ChineseAttackSpeed);
+        setSpeed(Engine.ActorValues._ChineseSpeed);
         setAttack(Engine.ActorValues._ChineseAttackDamage);
-        setAttackSpeed(Engine.ActorValues._ChineseSpeed);
+        setAttackSpeed(Engine.ActorValues._ChineseAttackSpeed);
         initHp(Engine.ActorValues._ChineseLife);
         setResValue(Engine.ActorValues._ChineseRes);
     }
     
-    /**
-     * Act - do whatever the Chinese wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        if(!this.grounded()){
-            gravity();
-        }
-        if(grounded()){
-            run(getDirection(), image_right, image_left);
-        }
-        //ab hier alle Aktionen!
-        direction();
-        beam();
-        
-        
-        checkDeath();
-    }    
+    @Override
     public void beam(){
         if(isTouching(Door.class)){
             if(getWorld() instanceof Forest){
@@ -55,5 +37,10 @@ public class Chinese extends PlatformerEnemys
                 setLocation(949,185);
             }
         }
+    }
+    
+    @Override
+    public void notifyDeath(){
+        ((Platformer) getWorld()).setActChinese(((Platformer) getWorld()).getActChinese() - 1);
     }
 }

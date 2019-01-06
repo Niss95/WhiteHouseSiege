@@ -18,11 +18,16 @@ public class TD_Arab extends TowerDefenceEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.ActorValues._ArabAttackSpeed);
-        setAttack(Engine.ActorValues._ArabAttackDamage);
-        setAttackSpeed(Engine.ActorValues._ArabSpeed);
-        initHp(Engine.ActorValues._ArabLife);
-        setResValue(Engine.ActorValues._ArabRes);        
+        setSpeed(Engine.ActorValues._TD_ArabSpeed);
+        setAttack(Engine.ActorValues._TD_ArabAttackDamage);
+        setAttackSpeed(Engine.ActorValues._TD_ArabAttackSpeed);
+        initHp(Engine.ActorValues._TD_ArabLife);
+        setResValue(Engine.ActorValues._TD_ArabRes);        
     }
       
+    
+    @Override
+    public void notifyDeath(){
+        // nothing
+    }
 }

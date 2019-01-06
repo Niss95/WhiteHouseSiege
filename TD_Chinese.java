@@ -18,11 +18,15 @@ public class TD_Chinese extends TowerDefenceEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.ActorValues._ChineseAttackSpeed);
-        setAttack(Engine.ActorValues._ChineseAttackDamage);
-        setAttackSpeed(Engine.ActorValues._ChineseSpeed);
-        initHp(Engine.ActorValues._ChineseLife);
-        setResValue(Engine.ActorValues._ChineseRes);
+        setSpeed(Engine.ActorValues._TD_ChineseSpeed);
+        setAttack(Engine.ActorValues._TD_ChineseAttackDamage);
+        setAttackSpeed(Engine.ActorValues._TD_ChineseAttackSpeed);
+        initHp(Engine.ActorValues._TD_ChineseLife);
+        setResValue(Engine.ActorValues._TD_ChineseRes);
     }
    
+    @Override
+    public void notifyDeath(){
+        // nothing
+    }
 }

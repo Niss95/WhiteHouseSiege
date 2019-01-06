@@ -13,34 +13,22 @@ public class Mexican extends PlatformerEnemys
 
     private int initHealth = 100;
     private int ressourceValue = 50;
-    
+
     public Mexican(String direction){
         setDirection(direction);
-        
+
         setImage(image_right);
         setImages(image_right, image_left);
-        
-        
-        setSpeed(Engine.ActorValues._MexicanAttackSpeed);
+
+        setSpeed(Engine.ActorValues._MexicanSpeed);
         setAttack(Engine.ActorValues._MexicanAttackDamage);
-        setAttackSpeed(Engine.ActorValues._MexicanSpeed);
+        setAttackSpeed(Engine.ActorValues._MexicanAttackSpeed);
         initHp(Engine.ActorValues._MexicanLife);
         setResValue(Engine.ActorValues._MexicanRes);
     }
-    /**
-     * Act - do whatever the Mexican wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        if(!this.grounded()){
-            gravity();
-        }
-        if(grounded()){
-            run(getDirection(), image_right, image_left);
-        }
-        direction();
-        //ab hier alle Aktionen!
+
+    @Override
+    public void beam(){
         if(isTouching(Door.class)){
             if(getWorld() instanceof Forest){
                 setLocation(1615,346);
@@ -48,9 +36,11 @@ public class Mexican extends PlatformerEnemys
                 setLocation(1531, 215);
             }
         }
-        checkDeath();
-    }    
-    
-    
-        }
+    }
 
+    @Override
+    public void notifyDeath(){
+        ((Platformer) getWorld()).setActMexicans(((Platformer) getWorld()).getActMexicans() - 1);
+    }
+    
+}

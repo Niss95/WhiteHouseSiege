@@ -38,24 +38,28 @@ public class MainMenu extends World
         forestLevel = new Forest(this);
 
         addObject(new MenuButton(MenuButton.ButtonType.Start), (this.getWidth() / 2), (this.getHeight()) / 3 * 2);  //Start Button
-        addObject(new MenuButton(MenuButton.ButtonType.Exit), (this.getWidth() / 2), (this.getHeight()) / 6 * 5);  //Start Button
+        addObject(new MenuButton(MenuButton.ButtonType.Exit), (this.getWidth() / 2), (this.getHeight()) / 6 * 5);  //Exit Button
     }
     
     public void startPressed(){
-        Engine.GameValues._GameOver = false;
-        Engine.GameValues._RoundStarted = false;
         switchWorldTo(levelTypes.BASE);
     }
     
     public void switchWorldTo(MainMenu.levelTypes type){
         switch(type){
             case BASE:
+                //Engine.GameValues._GameOver = false;
+                Engine.GameValues._RoundStarted = false;
                 Greenfoot.setWorld(baseLevel);
                 break;
             case DESERT:
+                desertLevel = new Desert(this);
+                desertLevel.initValues();
                 Greenfoot.setWorld(desertLevel);
                 break;
             case FOREST:
+                forestLevel = new Forest(this);
+                forestLevel.initValues();
                 Greenfoot.setWorld(forestLevel);
                 break;
         }

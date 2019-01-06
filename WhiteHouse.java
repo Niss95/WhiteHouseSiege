@@ -10,7 +10,8 @@ public class WhiteHouse extends AttackableBuildings
 {
     private GreenfootImage image = Engine.ImageLoader._image_WhiteHouse;
 
-    public WhiteHouse(){
+    public WhiteHouse(Base world){
+        this.world = world;
         this.setImage(image);
         initHp(1000);
         setIntact(true);
@@ -27,5 +28,18 @@ public class WhiteHouse extends AttackableBuildings
             getWorld().removeObject(this);
             Engine.GameValues._GameOver = true;
         }
+    }
+    
+    
+    @Override
+    public void increaseHealth(int hp){
+        int doubleHp = hp * 2;
+        this.setHpMax(getHpMax() + doubleHp);
+        this.setHp(getHp() + doubleHp);
+
+        if(bar == null){initHealthBar();}
+        
+        bar.setMax(this.getHpMax());
+        bar.setTarget(this.getHpMax());
     }
 }

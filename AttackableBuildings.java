@@ -11,6 +11,7 @@ public class AttackableBuildings extends Buildings
     public HealthBar bar;
     public void act() 
     {
+        if(bar == null){initHealthBar();}
         checkDeath();
     }    
 
@@ -20,6 +21,30 @@ public class AttackableBuildings extends Buildings
             bar = new HealthBar(getHpMax(), getHp(), getImage().getWidth() + 25, 24);
             getWorld().addObject(bar, getX(), getY() - (getImage().getHeight() / 1));
         }
+    }
+
+    public void heal(){
+        setHp(getHpMax());
+        bar.setTarget(getHpMax());
+        checkRespawn();
+    }
+    @Override
+    public void checkRespawn(){
+        if(killed){
+            world.addObject(this, lastX, lastY);
+            getWorld().addObject(bar, getX(), getY() - (getImage().getHeight() / 1));
+        }
+    }
+    
+    @Override
+    public void increaseHealth(int hp){
+        this.setHpMax(getHpMax() + hp);
+        this.setHp(getHp() + hp);
+
+        if(bar == null){initHealthBar();}
+        
+        bar.setMax(this.getHpMax());
+        bar.setTarget(this.getHpMax());
     }
 
     @Override

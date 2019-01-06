@@ -19,11 +19,16 @@ public class TD_Mexican extends TowerDefenceEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.ActorValues._MexicanAttackSpeed);
-        setAttack(Engine.ActorValues._MexicanAttackDamage);
-        setAttackSpeed(Engine.ActorValues._MexicanSpeed);
-        initHp(Engine.ActorValues._MexicanLife);
-        setResValue(Engine.ActorValues._MexicanRes);
+        setSpeed(Engine.ActorValues._TD_MexicanSpeed);
+        setAttack(Engine.ActorValues._TD_MexicanAttackDamage);
+        setAttackSpeed(Engine.ActorValues._TD_MexicanAttackSpeed);
+        initHp(Engine.ActorValues._TD_MexicanLife);
+        setResValue(Engine.ActorValues._TD_MexicanRes);
     }
     
+    
+    @Override
+    public void notifyDeath(){
+        // nothing
+    }
 }

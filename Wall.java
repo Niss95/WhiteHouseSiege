@@ -10,9 +10,10 @@ public class Wall extends AttackableBuildings
 {
     private GreenfootImage image = Engine.ImageLoader._image_Wall;
 
-    private int initHealth = 200000;
+    private int initHealth = 200;
 
-    public Wall(){
+    public Wall(Base world){
+        this.world = world;
         this.setImage(image);
         initHp(initHealth);
 
@@ -29,8 +30,8 @@ public class Wall extends AttackableBuildings
             setIntact(false);
             lastX = getX();
             lastY = getY();
+            killed = true;
             getWorld().removeObject(this);
-            Engine.GameValues._GameOver = true;
         }
     }
 }

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.params=visible
+comment0.target=RessourcenDisplay(boolean)
+comment1.params=visible
+comment1.target=void\ setVisible(boolean)
+comment2.params=
+comment2.target=void\ updateDisplay()
+comment3.params=
+comment3.target=void\ redraw()
+comment4.params=
+comment4.target=void\ act()
+numComments=5

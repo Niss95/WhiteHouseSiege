@@ -33,6 +33,13 @@ public abstract class Towers extends Buildings
             }  
         }
     } 
+    
+    
+    
+    @Override
+    public void increaseRange(int i){
+        this.setRange(this.getRange() + i);
+    }
 
     public void init(){
         if(!initialized){
@@ -48,9 +55,10 @@ public abstract class Towers extends Buildings
 
             for(int i = 0; i < attacableOpponents; i++){
                 if( i < targets.size()){
-                    getWorld().addObject(new Beam(getX(), getY() + (getImage().getHeight() / 2) - (getImage().getHeight() / 4 * 3), targets.get(i).getX(), targets.get(i).getY()), (Engine.Config._Width / 2), (Engine.Config._Height / 2));
+                    getWorld().addObject(new Beam(getX(), getY() + (getImage().getHeight() / 2) - (getImage().getHeight() / 4 * 3), targets.get(i).getX(), targets.get(i).getY(), rangeColor), (Engine.Config._Width / 2), (Engine.Config._Height / 2));
 
                     if(targets.get(i) != null){
+                        aplyEffect(targets.get(i));
                         targets.get(i).hurt(this.getAttack());
                     } 
                 }
@@ -59,9 +67,11 @@ public abstract class Towers extends Buildings
             attackTimer.mark();
         }
     }
+    
+    public abstract void aplyEffect(TowerDefenceEnemys target);
 
     public void calcRange(){
-        setRange(Math.abs( (this.getX() - (this.getWorld().getWidth() / 2)) ));
+        setRange(Math.abs( (this.getX() - (this.getWorld().getWidth() / 2)) ) * 2);
         if(this.rangeDisplay == null){
             rangeDisplay = new RangeDisplay();
             this.getWorld().addObject(rangeDisplay, 1, 1);
@@ -114,8 +124,8 @@ public abstract class Towers extends Buildings
         private GreenfootImage image = new GreenfootImage(Engine.Config._Width, Engine.Config._Height);
         private int timeToLiveInMilliSeconds = 250;
 
-        public Beam(int fromX, int fromY, int toX, int toY){
-            image.setColor(Color.RED);
+        public Beam(int fromX, int fromY, int toX, int toY, Color color){
+            image.setColor(color);
             image.drawLine(fromX, fromY, toX, toY);
             this.setImage(image);
             lifeTimer.mark();

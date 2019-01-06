@@ -1,4 +1,6 @@
 #BlueJ class context
-comment0.params=
-comment0.target=EffectTower()
-numComments=1
+comment0.params=world
+comment0.target=EffectTower(Base)
+comment1.params=target
+comment1.target=void\ aplyEffect(TowerDefenceEnemys)
+numComments=2

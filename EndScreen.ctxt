@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=
+comment0.target=EndScreen()
+comment0.text=\n\ Constructor\ for\ objects\ of\ class\ EndScreen.\n\ \n
+comment1.params=
+comment1.target=void\ prepare()
+comment2.params=
+comment2.target=void\ draw()
+numComments=3

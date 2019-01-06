@@ -11,14 +11,14 @@ public class UpgradeButton extends Buttons
     private GreenfootImage image_visible = Engine.ImageLoader._UpgradeButton_visible;
     private GreenfootImage image_unclickable = Engine.ImageLoader._UpgradeButton_unclickable;
     private GreenfootImage image_invisible = new GreenfootImage(1, 1);
-    
+
     private int posX;
     private int posY;
-    
+
     private Buildings building;
-    
+
     private boolean visible;
-    
+
     public UpgradeButton(Buildings building){
         this.setImage(image_visible);
         this.building = building;
@@ -26,24 +26,41 @@ public class UpgradeButton extends Buttons
         posX = building.getX();
         posY = building.getY();
     }
-    
+
     public void act() {
+        
+        calcImage();
+        
         if (visible && Greenfoot.mouseClicked(this)) {
-            
-            //do stuff
+            building.upgrade();
+            setLocation(getX(), getY());
         }
     }
     
+    private void calcImage(){
+        if(this.visible){
+            if(building.checkUpgradebal()){
+                this.setImage(image_visible);
+            }
+            else{
+                this.setImage(image_unclickable);
+            }
+
+        }
+        else{
+            this.setImage(image_invisible);
+        }
+    }
+
     public void setVisible(boolean visible){
         this.visible = visible;
-        if(visible){this.setImage(image_visible);}
-        else{this.setImage(image_invisible);}
+        
     }
-    
+
     public int getPosX(){
         return posX;
     }
-    
+
     public int getPosY(){
         return posY;
     }

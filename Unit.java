@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 abstract public class Unit extends Actor
 {
+    private int upgradeCostCurrent = Engine.GameValuesFixed._UpgradeCostAtStart;
+    
     private int force = 10;
 
     private int speed = 0;
@@ -70,7 +72,52 @@ abstract public class Unit extends Actor
 
     public void loc(int x, int y){this.setLocation(x,y);}
 
+    
+    
+    
+    
+    // UpgradeFunctions
+
+    public void increaseAttackSpeed(int i){
+        int temp = getAttackSpeed() + i;
+        if(temp > 0){
+            setAttackSpeed(getAttackSpeed() + i);
+        }
+    }
+
+    public void increaseDamage(int i){
+        setAttack(getAttack() + i);
+    }
+
+    public void increaseRange(int i){
+        //Override if needed!
+    }
+    
+    public void increaseSpeed(int i){
+        setSpeed(getSpeed() + i);
+    }
+
+    public void increaseHealth(int hp){
+        this.setHpMax(this.getHpMax() + hp);
+        this.setHp(this.getHp() + hp);
+    }
+    
+    
+    public void increaseUpgradeCost(){
+        this.upgradeCostCurrent += Engine.GameValuesFixed._UpgradeCostIncrease;
+    }
+    
+    
+    
     // Getter / Setter -------------------------------------------------------------------------------------------------------------------------------------
+    public void setUpgradeCostCurrent(int cost){
+        this.upgradeCostCurrent = cost;
+    }
+
+    public int getUpgradeCostCurrent(){
+        return this.upgradeCostCurrent;
+    }
+    
     public void setSpeed(int speed){
         this.speed = speed;
     }
@@ -110,6 +157,10 @@ abstract public class Unit extends Actor
 
     public int getHpMax(){
         return this.hpMax;
+    }
+    
+    public void setHpMax(int hp){
+        this.hpMax = hp;
     }
 
     public int getAttack(){

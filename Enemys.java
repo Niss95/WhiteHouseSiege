@@ -33,11 +33,16 @@ abstract public class Enemys extends Unit
     public void checkDeath(){
         if(getHp() == 0){
             changeRes();
+            if(getWorld() instanceof Platformer){
+                notifyDeath();
+            }
             getWorld().removeObject(this);
         }
     }
+    
+    public abstract void notifyDeath();
 
     public void changeRes(){
-        Engine.GameValues._Res += getResValue();
+        Engine.GameValues._RessourcesCurrent += getResValue();
     }
 }

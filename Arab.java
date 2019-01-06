@@ -22,35 +22,14 @@ public class Arab extends PlatformerEnemys
         setImages(image_right, image_left);
         
         
-        setSpeed(Engine.ActorValues._ArabAttackSpeed);
+        setSpeed(Engine.ActorValues._ArabSpeed);
         setAttack(Engine.ActorValues._ArabAttackDamage);
-        setAttackSpeed(Engine.ActorValues._ArabSpeed);
+        setAttackSpeed(Engine.ActorValues._ArabAttackSpeed);
         initHp(Engine.ActorValues._ArabLife);
         setResValue(Engine.ActorValues._ArabRes);
     }
     
-    /**
-     * Act - do whatever the Arab wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        
-        
-        if(!this.grounded()){
-            gravity();
-        }
-        if(grounded()){
-            run(getDirection(), image_right, image_left); //////hier!
-        }
-        
-        //ab hier alle Aktionen!
-        direction();
-        beam();
-        
-        checkDeath();
-    }  
-    
+    @Override
     public void beam(){
         if(isTouching(Door.class)){
             if(getWorld() instanceof Forest){
@@ -61,4 +40,9 @@ public class Arab extends PlatformerEnemys
         }
     }
   
+    
+    @Override
+    public void notifyDeath(){
+        ((Platformer) getWorld()).setActArabs(((Platformer) getWorld()).getActArabs() - 1);
+    }
 }

@@ -1,4 +1,18 @@
 #BlueJ class context
 comment0.params=menu\ width\ height
 comment0.target=Platformer(MainMenu,\ int,\ int)
-numComments=1
+comment1.params=
+comment1.target=void\ endRoutine()
+comment2.params=i
+comment2.target=void\ setActMexicans(int)
+comment3.params=
+comment3.target=int\ getActMexicans()
+comment4.params=i
+comment4.target=void\ setActChinese(int)
+comment5.params=
+comment5.target=int\ getActChinese()
+comment6.params=i
+comment6.target=void\ setActArabs(int)
+comment7.params=
+comment7.target=int\ getActArabs()
+numComments=8

@@ -8,16 +8,35 @@ import greenfoot.*;
  */
 public class ReadyButton extends Buttons
 {
-    private GreenfootImage image = Engine.ImageLoader._ReadyButton;
-    
+    private GreenfootImage image_visible = Engine.ImageLoader._ReadyButton;
+
+    private GreenfootImage image_invisible = new GreenfootImage(1, 1);
+
+    private boolean visible = true;
+
     public ReadyButton(){
-        this.setImage(image);
+        this.setImage(image_visible);
     }
-    
+
     public void act() {
-        if (Greenfoot.mouseClicked(this)) {
+
+        if (visible && Greenfoot.mouseClicked(this)) {
+            setVisible(false);
             ((Base) getWorld()).startRound();
-            getWorld().removeObject(this);
+        }
+    }
+
+    public void setVisible(boolean visible){
+        this.visible = visible;
+        calcImage();
+    }
+
+    private void calcImage(){
+        if(this.visible){
+            this.setImage(image_visible);
+        }
+        else{
+            this.setImage(image_invisible);
         }
     }
 }

@@ -11,30 +11,23 @@ public class Forest extends Platformer
     private Forest_Ground fosg;
 
     //----------------------------------------------
-    int max_Mexicans= 4;
-    int max_Chinese= 4;
-    int max_Arabs= 4;
-
-    int act_Mexicans = 0;
-    int act_Arabs = 0;
-    int act_Chinese = 0;
+    
 
     long begintime=System.currentTimeMillis();
-    int time=3000;
     long interval=getRandomTime(150, 500);
     private SimpleTimer timer=new SimpleTimer(); // funktioniert noch nicht    
-    
+
     //Etc: 
-    private boolean initialized = false;
+    private RessourcenDisplay resDisplay = new RessourcenDisplay(true);
+
     //----------------------------------------------
 
     public Forest(MainMenu menu)
     {
         super(menu, Engine.Config._Width, Engine.Config._Height); 
-
         this.setBackground(new GreenfootImage("forest_background.png"));
-
-        initValues();
+        this.addObject(resDisplay, (this.getWidth() / 2), 0 + (resDisplay.getImage().getHeight()));
+        //initValues();
         prepare();
     }
 
@@ -44,12 +37,11 @@ public class Forest extends Platformer
         time--;
         addEnemys();
         if (time==0) {
-            initialized = false;
-            menu.switchWorldTo(MainMenu.levelTypes.BASE);   
+            endRoutine();
         }                
     } 
 
-    private void initValues(){
+    public void initValues(){
         Engine.GameValues._CurrentRoundTime = Engine.GameValues._CurrentRoundTime - Engine.GameValuesFixed._RoundTimeDecreases;
         if(Engine.GameValues._CurrentRoundTime < Engine.GameValuesFixed._MinimumRoundTimer){ Engine.GameValues._CurrentRoundTime = Engine.GameValuesFixed._MinimumRoundTimer;}
         time = Engine.GameValues._CurrentRoundTime;
@@ -160,8 +152,7 @@ public class Forest extends Platformer
 
     private void spawnObjects(){
 
-        Player player = new Player();
-        addObject(player, 60, 718);
+        
         addObject(new Mexican("right"), 500, 300);
         addObject(new Chinese("left"), 1114, 439);
         addObject(new Arab("left"), 208, 170);
@@ -189,10 +180,16 @@ public class Forest extends Platformer
         Tempel_China tempelchina = new Tempel_China();
         addObject(tempelchina, 1114, 439);
 
-        HQ headq = new HQ();
-        addObject(headq, 38, 775);
+        HQ hq = new HQ();
+        addObject(hq, 38, 700);
+        
+        player = new Player();
+        player.setSpawnX(hq.getX());
+        player.setSpawnY(hq.getY() -  hq.getImage().getHeight() );
+        this.addObject(player, player.getSpawnX(), player.getSpawnY());
 
     }
+
     private void addRessources(){
         for(int j=0; j < 3;j++){
             for(int i=0; i < 5; i++){
@@ -270,16 +267,5 @@ public class Forest extends Platformer
 
     public void show_time(){ showText("Time: "+time, 65, 20);}
 
-    public void setActMexicans(int i){ this.act_Mexicans = i;}
-
-    public int getActMexicans(){return this.act_Mexicans;}
-
-    public void setActChinese(int i){ this.act_Chinese = i;}
-
-    public int getActChinese(){return this.act_Chinese;}
-
-    public void setActArabs(int i){ this.act_Arabs = i;}
-
-    public int getActArabs(){return this.act_Arabs;}
 
 }

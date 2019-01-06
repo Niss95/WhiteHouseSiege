@@ -13,7 +13,7 @@ public class Base_Logic extends Logic
     private enum EnemyTypes{ ARABS, CHINESE, MEXICANS; }
     private SimpleTimer timer = new SimpleTimer();
 
-    private Level world;
+    private Base world;
 
     private int midX;
     private int midY;
@@ -28,15 +28,14 @@ public class Base_Logic extends Logic
     private int spawnHeight;
 
     private boolean marked = false;
-    private int spawnDelay = 2;
-    private int roundNumber = Engine.GameValues._Round;
+
     private EnemyTypes enemyTypeToSpawn;
-    private int amountToSpawn = Engine.GameValues._CurrentAmountOfEnemysToSpawn;
     private int enemyCounter = 0;
 
     //Ect:
     private Base_Ground ground = new Base_Ground();
     private Player player;
+    private RessourcenDisplay resDisplay = new RessourcenDisplay(true);
 
     //Buttons:
     private ReadyButton readyButton = new ReadyButton();
@@ -67,6 +66,8 @@ public class Base_Logic extends Logic
         spawnPoint_left = 20;
         spawnHeight = world.getHeight() - (ground.getImage().getHeight() + 30);
 
+        world.addObject(resDisplay, (world.getWidth() / 2) , 0 + (resDisplay.getImage().getHeight()));
+
         initBuildings();
     }
 
@@ -79,32 +80,79 @@ public class Base_Logic extends Logic
             spawn();
             checkRoundOver();
         }
+        if(Engine.GameValues._GameOver){
+            Greenfoot.setWorld(new EndScreen());
+        }
     }
 
     public void startRound(){
         for(Buildings t : buildings){
             if(t instanceof Towers){
-                ((Towers)t).getRangeDisplay().setVisible(false);
+                //((Towers)t).getRangeDisplay().setVisible(false);
             }
         }
-        
+
         for(UpgradeButton b : upgradeButtons){
             b.setVisible(false);
         }
+
+        Engine.GameValues._currentRound++;
         Engine.GameValues._RoundStarted = true;
     }
 
     private void checkRoundOver(){
-        if(enemyCounter >= amountToSpawn && getWorld().getObjects(TowerDefenceEnemys.class).isEmpty()){
+        if(enemyCounter >= Engine.GameValues._CurrentAmountOfEnemysToSpawn && getWorld().getObjects(TowerDefenceEnemys.class).isEmpty()){
 
-            Engine.GameValues._RoundStarted = false;
+            endRoutine();
 
-            enemyTypeToSpawn = null;
             if(getRandomNumber(1,2) == 1){
                 ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.DESERT);
             }else{
                 ((Base) getWorld()).getMenu().switchWorldTo(MainMenu.levelTypes.FOREST);
             }
+        }
+    }
+
+    private void endRoutine(){
+
+        for(UpgradeButton b : upgradeButtons){
+            b.setVisible(true);
+        }
+
+        wRight.heal();
+        wLeft.heal();
+
+        
+        world.removeObject(player);
+        player = null;
+        readyButton.setVisible(true);
+
+        Engine.GameValues._RoundStarted = false;
+        Engine.GameValues._CurrentAmountOfEnemysToSpawn += Engine.GameValuesFixed._AmountOfEnemysToSpawnIncrease;
+        enemyCounter = 0;
+        enemyTypeToSpawn = null;
+
+        upgradeEnemys();
+    }
+
+    private void upgradeEnemys(){
+
+        if(Engine.GameValues._currentRound != 0 && (Engine.GameValues._currentRound % 3 == 0)){
+            Engine.ActorValues._TD_ArabLife = Engine.ActorValues._TD_ArabLife + Engine.GameValuesFixed._EnemyHealthUpgrade;
+            Engine.ActorValues._TD_ChineseLife = Engine.ActorValues._TD_ChineseLife + Engine.GameValuesFixed._EnemyHealthUpgrade;
+            Engine.ActorValues._TD_MexicanLife = Engine.ActorValues._TD_MexicanLife + Engine.GameValuesFixed._EnemyHealthUpgrade;
+
+            Engine.ActorValues._TD_ArabSpeed = Engine.ActorValues._TD_ArabSpeed + Engine.GameValuesFixed._EnemySpeedUpgrade;
+            Engine.ActorValues._TD_ChineseSpeed = Engine.ActorValues._TD_ChineseSpeed + Engine.GameValuesFixed._EnemySpeedUpgrade;
+            Engine.ActorValues._TD_MexicanSpeed = Engine.ActorValues._TD_MexicanSpeed + Engine.GameValuesFixed._EnemySpeedUpgrade;
+
+            Engine.ActorValues._TD_ArabAttackSpeed = Engine.ActorValues._TD_ArabAttackSpeed + Engine.GameValuesFixed._EnemyAttackSpeedUpgrade;
+            Engine.ActorValues._TD_ChineseAttackSpeed = Engine.ActorValues._TD_ChineseAttackSpeed + Engine.GameValuesFixed._EnemyAttackSpeedUpgrade;
+            Engine.ActorValues._TD_MexicanAttackSpeed = Engine.ActorValues._TD_MexicanAttackSpeed + Engine.GameValuesFixed._EnemyAttackSpeedUpgrade;
+
+            Engine.ActorValues._TD_ArabAttackDamage = Engine.ActorValues._TD_ArabAttackDamage + Engine.GameValuesFixed._EnemyAttackDamageUpgrade;
+            Engine.ActorValues._TD_ChineseAttackDamage = Engine.ActorValues._TD_ChineseAttackDamage + Engine.GameValuesFixed._EnemyAttackDamageUpgrade;
+            Engine.ActorValues._TD_MexicanAttackDamage = Engine.ActorValues._TD_MexicanAttackDamage + Engine.GameValuesFixed._EnemyAttackDamageUpgrade;
         }
     }
 
@@ -119,17 +167,14 @@ public class Base_Logic extends Logic
         }
 
         for(UpgradeButton b : upgradeButtons){
-            world.addObject(b, b.getPosX() , b.getPosY());
+            world.addObject(b, b.getPosX() , b.getPosY() - b.getImage().getHeight() * 2);
         }
     }
-
-    public void endUpgradePhase(){}
 
     private void decideEnemyType(){
         int random = getRandomNumber(1,3);
         if(random == 1){
             enemyTypeToSpawn = EnemyTypes.ARABS;
-            amountToSpawn = amountToSpawn / 2;
         }else if(random == 2){
             enemyTypeToSpawn = EnemyTypes.CHINESE;
         }
@@ -149,7 +194,7 @@ public class Base_Logic extends Logic
             timer.mark();
         }
 
-        if((enemyCounter < amountToSpawn) && (timer.millisElapsed() >= (spawnDelay * 1000))){
+        if((enemyCounter < Engine.GameValues._CurrentAmountOfEnemysToSpawn) && (timer.millisElapsed() >= Engine.GameValuesFixed._spawnRateinMilliSeconds)){
             //System.out.println("spawned enemy number : " + (enemyCounter + 1));
 
             switch (enemyTypeToSpawn){
@@ -166,6 +211,9 @@ public class Base_Logic extends Logic
             }
 
             enemyCounter++;
+            if(enemyTypeToSpawn == EnemyTypes.ARABS){
+                enemyCounter++; 
+            }
             timer.mark();
         }
     }
@@ -200,16 +248,16 @@ public class Base_Logic extends Logic
     }
 
     private void initBuildings(){
-        wh = new WhiteHouse();
+        wh = new WhiteHouse(world);
 
-        ptLeft = new PhysicalTower();
-        ptRight = new PhysicalTower();
+        ptLeft = new PhysicalTower(world);
+        ptRight = new PhysicalTower(world);
 
-        etLeft = new EffectTower();
-        etRight = new EffectTower();
+        etLeft = new EffectTower(world);
+        etRight = new EffectTower(world);
 
-        wLeft = new Wall();
-        wRight = new Wall();
+        wLeft = new Wall(world);
+        wRight = new Wall(world);
 
         buildings.add(wh);
         buildings.add(ptLeft);
